@@ -3,11 +3,16 @@
 
 namespace Openw67Render
 {
+    float toFloatColor(int color)
+    {
+        return color / 255;
+    }
+
     void OpenGraphics::setColor(Color color)
     {
         // Call glColor.
-        glColor4f((float) color.getRed() / 255f, (float) color.getGreen() / 255f, (float) color.getBlue() / 255f,
-                  (float) color.getAlpha() / 255f);
+        glColor4f(toFloatColor(color.getRed()), toFloatColor(color.getGreen()), toFloatColor(color.getBlue()),
+                  toFloatColor(color.getAlpha()));
     }
 
     void setViewport(int x, int y, int width, int height)
