@@ -38,4 +38,8 @@ namespace Openw67Render
     {
         return alpha;
     }
+
+    Color Color::BLACK = Color(0, 0, 0);
+
+    Color Color::WHITE = Color(255, 255, 255);
 }

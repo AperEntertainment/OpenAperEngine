@@ -33,6 +33,11 @@ namespace Openw67Render
         void init();
 
         /**
+         * Destroy the window.
+         */
+        void destroy();
+
+        /**
          * Gets the title of the window.
          *
          * @return Window's title.

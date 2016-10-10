@@ -25,6 +25,10 @@ namespace Openw67Render
         short255 getBlue();
 
         short255 getAlpha();
+
+        static Color BLACK;
+
+        static Color WHITE;
     };
 }
 

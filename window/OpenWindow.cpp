@@ -27,6 +27,12 @@ namespace Openw67Render
             window = glfwCreateWindow(width, height, title, NULL, NULL);
     }
 
+    void OpenWindow::destroy()
+    {
+        if (window)
+            glfwDestroyWindow(window);
+    }
+
     void OpenWindow::setTitle(const char *title)
     {
         OpenWindow::title = title;
@@ -55,8 +61,9 @@ namespace Openw67Render
 
     OpenWindow::~OpenWindow()
     {
-        glfwDestroyWindow(window);
-        delete &window;
+        destroy();
+        if (window)
+            delete &window;
         delete &title;
         delete &width;
         delete &height;

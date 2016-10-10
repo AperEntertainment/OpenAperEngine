@@ -13,9 +13,29 @@ namespace Openw67Render
         bool drawing = false;
 
     public:
-        OpenGraphics();
+        OpenGraphics(float complementX = 0.0, float complementY = 0.0);
 
-        void setColor(Color color);
+        ~OpenGraphics();
+
+        //void setColor(Color color);
+
+        void beginDraw(unsigned int drawType);
+
+        void endDraw();
+
+        void vertex2f(float x, float y);
+
+        void vertex3f(float x, float y, float z);
+
+        /**
+         * Draws a line in 2D.
+         *
+         * @param x  X position of the first point.
+         * @param y  Y position of the first point.
+         * @param x2 X position of the second point.
+         * @param y2 Y position of the second point.
+         */
+        void drawLine2D(float x, float y, float x2, float y2);
     };
 
     /**
