@@ -3,12 +3,9 @@
 namespace Openw67Render
 {
 
-    Color::Color(short255 red, short255 green, short255 blue, short255 alpha)
+    Color::Color(short255 red, short255 green, short255 blue, short255 alpha) : red(red), green(green), blue(blue),
+                                                                                alpha(alpha)
     {
-        Color::red = red;
-        Color::green = green;
-        Color::blue = blue;
-        Color::alpha = alpha;
     }
 
     Color::~Color()

@@ -18,17 +18,17 @@ namespace Openw67Render
         delete &drawing;
     }
 
-    float toFloatColor(int color)
+    float toFloatColor(short255 color)
     {
-        return color / 255;
+        return (float) (color / 255.0);
     }
 
-    /*void OpenGraphics::setColor(Color color)
+    void OpenGraphics::setColor(Color color)
     {
         // Call glColor.
         glColor4f(toFloatColor(color.getRed()), toFloatColor(color.getGreen()), toFloatColor(color.getBlue()),
                   toFloatColor(color.getAlpha()));
-    }*/
+    }
 
     void OpenGraphics::beginDraw(unsigned int drawType)
     {

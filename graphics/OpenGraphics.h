@@ -17,7 +17,7 @@ namespace Openw67Render
 
         ~OpenGraphics();
 
-        //void setColor(Color color);
+        void setColor(Color color);
 
         void beginDraw(unsigned int drawType);
 

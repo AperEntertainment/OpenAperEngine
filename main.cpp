@@ -50,7 +50,8 @@ int main()
         // disable depth test so further drawing will go over the current scene
         glDisable(GL_DEPTH_TEST);
 
-        //graphics.setColor(Color::BLACK);
+        Color color = Color(71, 97, 141);
+        graphics.setColor(color);
         graphics.beginDraw(DRAW_TYPE_QUADS);
         graphics.vertex2f(x, y);
         graphics.vertex2f(x, y + height);
