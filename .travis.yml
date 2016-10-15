@@ -1,0 +1,13 @@
+language: cpp
+
+os:
+  - linux
+
+compiler:
+  - gcc
+  - clang
+
+install: cmake make get-deps
+
+script:
+  - cmake

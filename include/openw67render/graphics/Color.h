@@ -26,6 +26,10 @@ namespace Openw67Render
 
         short255 getAlpha();
 
+        void ligther();
+
+        void darker();
+
         static Color BLACK;
 
         static Color WHITE;

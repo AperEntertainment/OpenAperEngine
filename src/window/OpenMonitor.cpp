@@ -17,4 +17,12 @@ namespace Openw67Render
         // Call GLFW API.
         return glfwGetMonitorName(monitor);
     }
+
+    OpenVideoMode OpenMonitor::getVideoMode()
+    {
+        const GLFWvidmode *vidMode = glfwGetVideoMode(getMonitorReference());
+        return Openw67Render::OpenVideoMode((unsigned int) vidMode->height, (unsigned int) vidMode->width,
+                                            (unsigned int) vidMode->redBits, (unsigned int) vidMode->greenBits,
+                                            (unsigned int) vidMode->blueBits, (unsigned int) vidMode->refreshRate);
+    }
 }

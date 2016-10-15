@@ -11,7 +11,7 @@ set(HEADERS ${GRAPHICS_HEADERS} ${WINDOW_HEADERS} ${BASE_HEADERS})
 set(GRAPHICS_SOURCES graphics/Color.cpp graphics/OpenGraphics.cpp)
 set(WINDOW_SOURCES window/OpenCursor.cpp window/OpenMonitor.cpp window/OpenWindow.cpp)
 
-set(SOURCES ${GRAPHICS_SOURCES} ${WINDOW_SOURCES})
+set(SOURCES ${GRAPHICS_SOURCES} ${WINDOW_SOURCES} OpenUtils.cpp)
 
 add_library(openw67render ${HEADERS} ${SOURCES})
 
