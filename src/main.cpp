@@ -3,14 +3,13 @@
 #include "../include/openw67render/window/OpenWindow.h"
 #include "../include/openw67render/graphics/Color.h"
 #include "../include/openw67render/graphics/OpenGraphics.h"
-#include "../include/openw67render/OpenUtils.h"
 
 using namespace std;
 using namespace Openw67Render;
 
 void error_callback(int error, const char* description)
 {
-    fprintf(stderr, "Error: %s\n", description);
+    fprintf(stderr, "Error: %s\nID: " + error, description);
 }
 
 int main()
