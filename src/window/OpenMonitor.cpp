@@ -1,4 +1,4 @@
-#include "OpenMonitor.h"
+#include "../../include/openw67render/window/OpenMonitor.h"
 
 namespace Openw67Render
 {

@@ -1,5 +1,4 @@
-#include "OpenGraphics.h"
-#include <GLFW/glfw3.h>
+#include "../../include/openw67render/graphics/OpenGraphics.h"
 #include <stdexcept>
 #include <iostream>
 

@@ -1,4 +1,4 @@
-#include "OpenCursor.h"
+#include "../../include/openw67render/window/OpenCursor.h"
 
 namespace Openw67Render
 {

@@ -1,4 +1,4 @@
-#include "OpenWindow.h"
+#include "../../include/openw67render/window/OpenWindow.h"
 #include <GLFW/glfw3.h>
 
 namespace Openw67Render

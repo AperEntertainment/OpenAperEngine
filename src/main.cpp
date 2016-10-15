@@ -1,9 +1,9 @@
 #include <iostream>
 #include <GLFW/glfw3.h>
-#include "window/OpenWindow.h"
-#include "graphics/Color.h"
-#include "graphics/OpenGraphics.h"
-#include "OpenUtils.h"
+#include "../include/openw67render/window/OpenWindow.h"
+#include "../include/openw67render/graphics/Color.h"
+#include "../include/openw67render/graphics/OpenGraphics.h"
+#include "../include/openw67render/OpenUtils.h"
 
 using namespace std;
 using namespace Openw67Render;

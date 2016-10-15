@@ -1,4 +1,4 @@
-#include "Color.h"
+#include "../../include/openw67render/graphics/Color.h"
 
 namespace Openw67Render
 {
