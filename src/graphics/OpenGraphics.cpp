@@ -4,15 +4,14 @@
 
 namespace Openw67Render
 {
-    OpenGraphics::OpenGraphics(float complementX, float complementY)
+    OpenGraphics::OpenGraphics(float complementX, float complementY) : complementX(complementX),
+                                                                       complementY(complementY)
     {
-        this->complementX = complementX;
-        this->complementY = complementY;
     }
 
     float toFloatColor(short255 color)
     {
-        return (float) (color / 255.0);
+        return static_cast<float>(color / 255.0);
     }
 
     void OpenGraphics::setColor(Color color)

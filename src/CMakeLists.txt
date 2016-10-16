@@ -13,6 +13,6 @@ set(WINDOW_SOURCES window/OpenCursor.cpp window/OpenMonitor.cpp window/OpenWindo
 
 set(SOURCES ${GRAPHICS_SOURCES} ${WINDOW_SOURCES})
 
-add_library(openw67render ${HEADERS} ${SOURCES})
+add_library(openw67render SHARED ${HEADERS} ${SOURCES})
 
 target_link_libraries(openw67render glfw ${GL_LIB} ${GLFW_LIBRARIES} ${OPENGL_gl_LIBRARY})

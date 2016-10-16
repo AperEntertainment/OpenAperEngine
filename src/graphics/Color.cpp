@@ -8,22 +8,22 @@ namespace Openw67Render
     {
     }
 
-    uint8_t Color::red()
+    uint8_t Color::red() const
     {
         return _red;
     }
 
-    uint8_t Color::green()
+    uint8_t Color::green() const
     {
         return _green;
     }
 
-    uint8_t Color::blue()
+    uint8_t Color::blue() const
     {
         return _blue;
     }
 
-    uint8_t Color::alpha()
+    uint8_t Color::alpha() const
     {
         return _alpha;
     }
@@ -31,24 +31,24 @@ namespace Openw67Render
     Color Color::ligther()
     {
         uint8_t i = static_cast<uint8_t>(1.0 / (1.0 - 0.7));
-        uint8_t __blue = _blue;
-        uint8_t __green = _green;
-        uint8_t __red = _red;
+        uint8_t lblue = _blue;
+        uint8_t lgreen = _green;
+        uint8_t lred = _red;
 
         if (_red == 0 && _green == 0 && _blue == 0)
         {
             return Color(i, i, i, _alpha);
         }
         if (_red > 0 && _red < i)
-            __red = i;
+            lred = i;
         if (_green > 0 && _green < i)
-            __green = i;
+            lgreen = i;
         if (_blue > 0 && _blue < i)
-            __blue = i;
+            lblue = i;
 
-        return Color(static_cast<uint8_t>(std::max(static_cast<int> (__red * 0.7), 0)),
-                     static_cast<uint8_t>(std::max(static_cast<int> (__green * 0.7), 0)),
-                     static_cast<uint8_t>(std::max(static_cast<int> (__blue * 0.7), 0)), _alpha);
+        return Color(static_cast<uint8_t>(std::max(static_cast<int> (lred * 0.7), 0)),
+                     static_cast<uint8_t>(std::max(static_cast<int> (lgreen * 0.7), 0)),
+                     static_cast<uint8_t>(std::max(static_cast<int> (lblue * 0.7), 0)), _alpha);
     }
 
     Color Color::darker()
@@ -58,7 +58,7 @@ namespace Openw67Render
                      static_cast<uint8_t>(std::min(static_cast<int>(_blue / 0.7), 0)), _alpha);
     }
 
-    Color Color::BLACK = Color(0, 0, 0);
+    const Color Color::BLACK{0, 0, 0};
 
-    Color Color::WHITE = Color(255, 255, 255);
+    const Color Color::WHITE{255, 255, 255};
 }

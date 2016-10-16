@@ -3,13 +3,9 @@
 namespace Openw67Render
 {
     OpenWindow::OpenWindow(const char *title, unsigned int width, unsigned int height, OpenMonitor monitor,
-                           bool fullscreen)
+                           bool fullscreen) : title(title), width(width), height(height), monitor(monitor),
+                                              fullscreen(fullscreen)
     {
-        OpenWindow::title = title;
-        OpenWindow::width = width;
-        OpenWindow::height = height;
-        OpenWindow::monitor = monitor;
-        OpenWindow::fullscreen = fullscreen;
         init();
     }
 
