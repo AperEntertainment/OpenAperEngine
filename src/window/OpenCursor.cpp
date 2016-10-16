@@ -2,7 +2,7 @@
 
 namespace Openw67Render
 {
-    GLFWcursor *OpenCursor::getCursorReference()
+    GLFWcursor *OpenCursor::getCursorPointer()
     {
         return cursor;
     }

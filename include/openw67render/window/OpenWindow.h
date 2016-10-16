@@ -28,7 +28,7 @@ namespace Openw67Render
          *
          * @return Reference of the GLFW's window.
          */
-        GLFWwindow *getWindowReference();
+        GLFWwindow *getWindowPointer();
 
         void init();
 

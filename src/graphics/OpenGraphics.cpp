@@ -10,13 +10,6 @@ namespace Openw67Render
         this->complementY = complementY;
     }
 
-    OpenGraphics::~OpenGraphics()
-    {
-        delete &complementX;
-        delete &complementY;
-        delete &drawing;
-    }
-
     float toFloatColor(short255 color)
     {
         return (float) (color / 255.0);
@@ -25,8 +18,8 @@ namespace Openw67Render
     void OpenGraphics::setColor(Color color)
     {
         // Call glColor.
-        glColor4f(toFloatColor(color.getRed()), toFloatColor(color.getGreen()), toFloatColor(color.getBlue()),
-                  toFloatColor(color.getAlpha()));
+        glColor4f(toFloatColor(color.red()), toFloatColor(color.green()), toFloatColor(color.blue()),
+                  toFloatColor(color.alpha()));
     }
 
     void OpenGraphics::beginDraw(unsigned int drawType)

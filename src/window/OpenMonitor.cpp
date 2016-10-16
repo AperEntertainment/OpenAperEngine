@@ -7,7 +7,7 @@ namespace Openw67Render
         OpenMonitor::monitor = monitor;
     }
 
-    GLFWmonitor *OpenMonitor::getMonitorReference()
+    GLFWmonitor *OpenMonitor::getMonitorPointer()
     {
         return monitor;
     }
@@ -20,9 +20,12 @@ namespace Openw67Render
 
     OpenVideoMode OpenMonitor::getVideoMode()
     {
-        const GLFWvidmode *vidMode = glfwGetVideoMode(getMonitorReference());
-        return Openw67Render::OpenVideoMode((unsigned int) vidMode->height, (unsigned int) vidMode->width,
-                                            (unsigned int) vidMode->redBits, (unsigned int) vidMode->greenBits,
-                                            (unsigned int) vidMode->blueBits, (unsigned int) vidMode->refreshRate);
+        const GLFWvidmode *vidMode = glfwGetVideoMode(getMonitorPointer());
+        return Openw67Render::OpenVideoMode(static_cast<unsigned int>(vidMode->height),
+                                            static_cast<unsigned int>(vidMode->width),
+                                            static_cast<unsigned int>(vidMode->redBits),
+                                            static_cast<unsigned int>(vidMode->greenBits),
+                                            static_cast<unsigned int>(vidMode->blueBits),
+                                            static_cast<unsigned int>(vidMode->refreshRate));
     }
 }

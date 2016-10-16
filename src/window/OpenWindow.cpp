@@ -13,7 +13,7 @@ namespace Openw67Render
         init();
     }
 
-    GLFWwindow *OpenWindow::getWindowReference()
+    GLFWwindow *OpenWindow::getWindowPointer()
     {
         return window;
     }
@@ -21,9 +21,9 @@ namespace Openw67Render
     void OpenWindow::init()
     {
         if (fullscreen)
-            window = glfwCreateWindow(width, height, title, monitor.getMonitorReference(), NULL);
+            window = glfwCreateWindow(width, height, title, monitor.getMonitorPointer(), nullptr);
         else
-            window = glfwCreateWindow(width, height, title, NULL, NULL);
+            window = glfwCreateWindow(width, height, title, nullptr, nullptr);
     }
 
     void OpenWindow::destroy()
@@ -61,15 +61,5 @@ namespace Openw67Render
     OpenWindow::~OpenWindow()
     {
         destroy();
-        if (window)
-            delete &window;
-        delete &title;
-        delete &width;
-        delete &height;
-        delete &x;
-        delete &y;
-        delete &visible;
-        delete &fullscreen;
-        delete &monitor;
     }
 }

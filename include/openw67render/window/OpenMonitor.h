@@ -22,16 +22,6 @@ namespace Openw67Render
                                                   refreshRate(refreshRate)
         {}
 
-        ~OpenVideoMode()
-        {
-            delete &width;
-            delete &height;
-            delete &redBits;
-            delete &greenBits;
-            delete &blueBits;
-            delete &refreshRate;
-        }
-
         /*! The width, in screen coordinates, of the video mode.
          */
         unsigned int width;
@@ -70,7 +60,7 @@ namespace Openw67Render
          *
          * @return Reference of the GLFW's monitor.
          */
-        GLFWmonitor *getMonitorReference();
+        GLFWmonitor *getMonitorPointer();
 
         /*! @brief Gets the monitor's video mode.
          *

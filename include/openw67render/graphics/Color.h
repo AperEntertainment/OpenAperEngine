@@ -8,27 +8,22 @@ namespace Openw67Render
     class Color
     {
     private:
-        short255 red;
-        short255 green;
-        short255 blue;
-        short255 alpha;
+        uint8_t _red, _green, _blue, _alpha;
 
     public:
-        Color(short255 red, short255 green, short255 blue, short255 alpha = 255);
+        Color(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha = 255);
 
-        ~Color();
+        uint8_t red();
 
-        short255 getRed();
+        uint8_t green();
 
-        short255 getGreen();
+        uint8_t blue();
 
-        short255 getBlue();
+        uint8_t alpha();
 
-        short255 getAlpha();
+        Color ligther();
 
-        void ligther();
-
-        void darker();
+        Color darker();
 
         static Color BLACK;
 

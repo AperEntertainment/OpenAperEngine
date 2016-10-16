@@ -1,68 +1,61 @@
+#include <bits/stl_algobase.h>
 #include "../../include/openw67render/graphics/Color.h"
 
 namespace Openw67Render
 {
-    Color::Color(short255 red, short255 green, short255 blue, short255 alpha) : red(red), green(green), blue(blue),
-                                                                                alpha(alpha)
+    Color::Color(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha) : _red(red), _green(green), _blue(blue),
+                                                                            _alpha(alpha)
     {
     }
 
-    Color::~Color()
+    uint8_t Color::red()
     {
-        delete &red;
-        delete &green;
-        delete &blue;
-        delete &alpha;
+        return _red;
     }
 
-    short255 Color::getRed()
+    uint8_t Color::green()
     {
-        return red;
+        return _green;
     }
 
-    short255 Color::getGreen()
+    uint8_t Color::blue()
     {
-        return green;
+        return _blue;
     }
 
-    short255 Color::getBlue()
+    uint8_t Color::alpha()
     {
-        return blue;
+        return _alpha;
     }
 
-    short255 Color::getAlpha()
+    Color Color::ligther()
     {
-        return alpha;
-    }
+        uint8_t i = static_cast<uint8_t>(1.0 / (1.0 - 0.7));
+        uint8_t __blue = _blue;
+        uint8_t __green = _green;
+        uint8_t __red = _red;
 
-    void Color::ligther()
-    {
-        short255 i = (short255) (1.0 / (1.0 - 0.7));
-
-        if (red == 0 && green == 0 && blue == 0)
+        if (_red == 0 && _green == 0 && _blue == 0)
         {
-            red = i;
-            green = i;
-            blue = i;
-            return;
+            return Color(i, i, i, _alpha);
         }
-        if (red > 0 && red < i)
-            red = i;
-        if (green > 0 && green < i)
-            green = i;
-        if (blue > 0 && blue < i)
-            blue = i;
+        if (_red > 0 && _red < i)
+            __red = i;
+        if (_green > 0 && _green < i)
+            __green = i;
+        if (_blue > 0 && _blue < i)
+            __blue = i;
 
-        red = max((short255) (red * 0.7), 0);
-        green = max((short255) (green * 0.7), 0);
-        blue = max((short255) (blue * 0.7), 0);
+        return Color(static_cast<uint8_t>(std::max(static_cast<int> (__red * 0.7), 0)),
+                     static_cast<uint8_t>(std::max(static_cast<int> (__green * 0.7), 0)),
+                     static_cast<uint8_t>(std::max(static_cast<int> (__blue * 0.7), 0)), _alpha);
     }
 
-    void Color::darker()
+    Color Color::darker()
     {
-        red = min((short255) (red / 0.7), 0);
-        green = min((short255) (green / 0.7), 0);
-        blue = min((short255) (blue / 0.7), 0);
+        return Color(static_cast<uint8_t>(std::min(static_cast<int>(_red / 0.7), 0)),
+                     static_cast<uint8_t>(std::min(static_cast<int>(_green / 0.7), 0)),
+                     static_cast<uint8_t>(std::min(static_cast<int>(_blue / 0.7), 0)), _alpha);
     }
 
     Color Color::BLACK = Color(0, 0, 0);

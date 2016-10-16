@@ -15,8 +15,6 @@ namespace Openw67Render
     public:
         OpenGraphics(float complementX = 0.0, float complementY = 0.0);
 
-        ~OpenGraphics();
-
         void setColor(Color color);
 
         void beginDraw(unsigned int drawType);
