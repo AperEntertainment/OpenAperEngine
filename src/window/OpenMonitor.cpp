@@ -28,4 +28,6 @@ namespace Openw67Render
                                             static_cast<unsigned int>(vidMode->blueBits),
                                             static_cast<unsigned int>(vidMode->refreshRate));
     }
+
+    const OpenMonitor OpenMonitor::PRIMARY_MONITOR{glfwGetPrimaryMonitor()};
 }

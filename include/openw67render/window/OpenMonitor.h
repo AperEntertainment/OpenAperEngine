@@ -70,13 +70,19 @@ namespace Openw67Render
          */
         OpenVideoMode getVideoMode();
 
-        /**
-         * Gets the name of the monitor.
+        /*! @brief Gets the name of the monitor.
+         *
+         * This function returns the native name of the monitor.
          *
          * @return Monitor's name.
          */
         inline const char *getName();
 
+        /*! @brief Represents the primary monitor.
+         *
+         * The field contains the instance of the primary monitor.
+         */
+        const static OpenMonitor PRIMARY_MONITOR;
     };
 }
 
