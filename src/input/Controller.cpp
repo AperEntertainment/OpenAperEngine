@@ -17,12 +17,26 @@
  * along with Openw67Render.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "../../include/openw67render/window/OpenCursor.h"
+#include "../../include/openw67render/input/Controller.h"
 
 namespace Openw67Render
 {
-    GLFWcursor *OpenCursor::getCursorPointer()
+    Controller::Controller(int id) : joystick(id)
     {
-        return cursor;
+    }
+
+    int Controller::getId() const
+    {
+        return joystick;
+    }
+
+    const char *Controller::getName()
+    {
+        return glfwGetJoystickName(joystick);
+    }
+
+    bool Controller::isConnected()
+    {
+        return glfwJoystickPresent(joystick) == 1;
     }
 }
