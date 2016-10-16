@@ -2,12 +2,12 @@
 
 namespace Openw67Render
 {
-    int min(int x, int y)
+    int minInt(int x, int y)
     {
         return y ^ ((x ^ y) & -(x < y));
     }
 
-    int max(int x, int y)
+    int maxInt(int x, int y)
     {
         return x ^ ((x ^ y) & -(x < y));
     }

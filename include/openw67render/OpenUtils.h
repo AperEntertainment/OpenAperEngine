@@ -10,9 +10,9 @@ typedef unsigned char short255;
 
 namespace Openw67Render
 {
-    int min(int x, int y);
+    int minInt(int x, int y);
 
-    int max(int x, int y);
+    int maxInt(int x, int y);
 
     short255 min(short255 x, short255 y);
 
