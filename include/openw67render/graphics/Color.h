@@ -17,8 +17,8 @@
  * along with Openw67Render.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CPPW67RENDER_COLOR_H
-#define CPPW67RENDER_COLOR_H
+#ifndef OPENW67RENDER_COLOR_H
+#define OPENW67RENDER_COLOR_H
 
 #include "../OpenUtils.h"
 
@@ -50,4 +50,4 @@ namespace Openw67Render
     };
 }
 
-#endif //CPPW67RENDER_COLOR_H
+#endif //OPENW67RENDER_COLOR_H

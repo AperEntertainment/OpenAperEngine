@@ -525,4 +525,6 @@ luac.out
 
 # Shared objects (inc. Windows DLLs)
 
-# Executables
+# Dependencies
+
+include/stb

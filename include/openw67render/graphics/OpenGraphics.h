@@ -17,8 +17,8 @@
  * along with Openw67Render.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CPPW67RENDER_OPENGRAPHICS_H
-#define CPPW67RENDER_OPENGRAPHICS_H
+#ifndef OPENW67RENDER_OPENGRAPHICS_H
+#define OPENW67RENDER_OPENGRAPHICS_H
 
 #include "Color.h"
 #include "../window/OpenWindow.h"
@@ -76,13 +76,38 @@ namespace Openw67Render
 
         /*! @brief Enables or disables the transparency.
          *
-         * This function enable or disable the OpenGL transparency.
+         * This function enables or disables the OpenGL transparency.
          * It enables the transparency when the parameter transparency is true and it disables the transparency
          * when the paramenter transparency is false.
          *
          * @param transparency True if enable the transparency, else false.
          */
         void setTransparency(bool transparency);
+
+        /*! @brief Gets if the transparency is enabled.
+         *
+         * This function returns whether the transparency is enabled or disabled.
+         *
+         * @return True if the transparency is enabled, else false.
+         */
+        bool isTransparency();
+
+        /*! @brief Enables or disables the use of 2D textures.
+         *
+         * This function enables or disables the use of 2D textures in OpenGL.
+         * If the parameter useTexture2D
+         *
+         * @param useTexture2D True if enable the use of 2D textures, else false.
+         */
+        void setTexture2DOn(bool useTexture2D);
+
+        /*! @brief Gets if the use of 2D textures is enabled.
+         *
+         * This function returns whether the use of 2D texture is enabled or disabled.
+         *
+         * @return True if the use of 2D textures is enabled, else.
+         */
+        bool isTexture2D();
 
         void beginDraw(unsigned int drawType);
 
@@ -116,4 +141,4 @@ namespace Openw67Render
     void setViewport(int x, int y, int width, int height);
 }
 
-#endif //CPPW67RENDER_OPENGRAPHICS_H
+#endif //OPENW67RENDER_OPENGRAPHICS_H

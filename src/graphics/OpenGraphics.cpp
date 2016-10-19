@@ -72,13 +72,35 @@ namespace Openw67Render
 
     void OpenGraphics::setTransparency(bool transparency)
     {
-        if (transparency)
-        {
-            glEnable(GL_BLEND);
-            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        }
-        else
-            glDisable(GL_BLEND);
+        if (transparency != isTransparency())
+            if (transparency)
+            {
+                glEnable(GL_BLEND);
+                glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            }
+            else
+                glDisable(GL_BLEND);
+    }
+
+    bool OpenGraphics::isTransparency()
+    {
+        return glIsEnabled(GL_BLEND);
+    }
+
+    void OpenGraphics::setTexture2DOn(bool useTexture2D)
+    {
+        if (useTexture2D != isTexture2D())
+            if (useTexture2D)
+            {
+                glEnable(GL_TEXTURE_2D);
+            }
+            else
+                glDisable(GL_TEXTURE_2D);
+    }
+
+    bool OpenGraphics::isTexture2D()
+    {
+        return glIsEnabled(GL_TEXTURE_2D);
     }
 
     float toFloatColor(short255 color)

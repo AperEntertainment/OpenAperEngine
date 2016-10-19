@@ -17,14 +17,25 @@
  * along with Openw67Render.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CPPW67RENDER_OPENUTILS_H
-#define CPPW67RENDER_OPENUTILS_H
+#ifndef OPENW67RENDER_OPENUTILS_H
+#define OPENW67RENDER_OPENUTILS_H
 
 #include <GLFW/glfw3.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif // For C++
 
 typedef unsigned char short255;
 
 #define DRAW_TYPE_QUADS GL_QUADS
 #define DRAW_TYPE_LINES GL_LINES
 
-#endif //CPPW67RENDER_OPENUTILS_H
+#define GL_CLAMP_TO_EDGE 0x812F
+
+#ifdef __cplusplus
+}
+#endif // For C++
+
+
+#endif //OPENW67RENDER_OPENUTILS_H

@@ -17,8 +17,8 @@
  * along with Openw67Render.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CPPW67RENDER_OPENMONITOR_H
-#define CPPW67RENDER_OPENMONITOR_H
+#ifndef OPENW67RENDER_OPENMONITOR_H
+#define OPENW67RENDER_OPENMONITOR_H
 
 #include <string>
 #include <GLFW/glfw3.h>
@@ -105,4 +105,4 @@ namespace Openw67Render
     };
 }
 
-#endif //CPPW67RENDER_OPENMONITOR_H
+#endif //OPENW67RENDER_OPENMONITOR_H
