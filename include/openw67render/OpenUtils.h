@@ -33,6 +33,19 @@ typedef unsigned char short255;
 
 #define GL_CLAMP_TO_EDGE 0x812F
 
+#ifdef _WIN32
+#define LINE_SEPARATOR "\r\n"
+#define PATH_SEPARATOR "\\"
+#elif __APPLE__
+#define LINE_SEPARATOR "\r"
+#define PATH_SEPARATOR "/"
+#elif __linux__
+#define LINE_SEPARATOR "\n"
+#define PATH_SEPARATOR "/"
+#else
+#error "Your platform does not seem to be supported."
+#endif
+
 #ifdef __cplusplus
 }
 #endif // For C++

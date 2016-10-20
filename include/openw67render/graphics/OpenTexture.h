@@ -22,7 +22,7 @@
 
 #include <GLFW/glfw3.h>
 #include "../OpenUtils.h"
-#include <vector>
+#include <string>
 
 enum TextureWrapMode
 {
@@ -46,14 +46,17 @@ class OpenTexture
 private:
     const TextureWrapMode textureWrapMode;
     const TextureFilterMode textureFilterMode;
+
 protected:
     const unsigned int _width;
     const unsigned int _height;
     unsigned int _id;
 
     void init(uint8_t data[]);
+
 public:
-    OpenTexture(uint8_t data[], unsigned int width, unsigned int height, TextureWrapMode wrapMode, TextureFilterMode filterMode);
+    OpenTexture(uint8_t data[], unsigned int width, unsigned int height, TextureWrapMode wrapMode,
+                TextureFilterMode filterMode);
 
     ~OpenTexture();
 
@@ -118,6 +121,11 @@ public:
 
 OpenTexture createTexture(uint8_t image[], unsigned int width, unsigned int height);
 
-OpenTexture createTexture(uint8_t image[], unsigned int width, unsigned int height, TextureWrapMode wrapMode, TextureFilterMode filterMode);
+OpenTexture createTexture(uint8_t image[], unsigned int width, unsigned int height, TextureWrapMode wrapMode,
+                          TextureFilterMode filterMode);
+
+OpenTexture loadTexture(std::string path);
+
+OpenTexture loadTexture(std::string path, TextureWrapMode wrapMode, TextureFilterMode filterMode);
 
 #endif //OPENW67RENDER_OPENIMAGE_H

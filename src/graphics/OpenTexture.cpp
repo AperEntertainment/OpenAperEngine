@@ -18,10 +18,11 @@
  */
 
 #include "../../include/openw67render/graphics/OpenTexture.h"
+#include "../../include/stb/stb_image.h"
 
 OpenTexture::OpenTexture(uint8_t data[], unsigned int width, unsigned int height, TextureWrapMode wrapMode,
-                          TextureFilterMode filterMode) : _width(width), _height(height), textureWrapMode(wrapMode),
-                                                          textureFilterMode(filterMode)
+                         TextureFilterMode filterMode) : _width(width), _height(height), textureWrapMode(wrapMode),
+                                                         textureFilterMode(filterMode)
 {
     init(data);
 }
@@ -98,4 +99,25 @@ OpenTexture createTexture(uint8_t image[], unsigned int width, unsigned int heig
                           TextureFilterMode filterMode)
 {
     return OpenTexture(image, width, height, wrapMode, filterMode);
+}
+
+OpenTexture loadTexture(std::string path)
+{
+    return loadTexture(path, TextureWrapMode::CLAMP, TextureFilterMode::NEAREST);
+}
+
+OpenTexture loadTexture(std::string path, TextureWrapMode wrapMode, TextureFilterMode filterMode)
+{
+    int width;
+    int height;
+    int comp;
+    // Load image
+    stbi_set_flip_vertically_on_load(1);
+    uint8_t *data = stbi_load(path.c_str(), &width, &height, &comp, STBI_rgb_alpha);
+    if (data == nullptr)
+        throw (std::string("Failed to load texture").append(LINE_SEPARATOR).append(stbi_failure_reason()));
+
+    OpenTexture texture = createTexture(data, static_cast<unsigned int>(width), static_cast<unsigned int>(height), wrapMode, filterMode);
+    stbi_image_free(data);
+    return texture;
 }
