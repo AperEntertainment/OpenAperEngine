@@ -19,4 +19,4 @@ set(SOURCES ${GRAPHICS_SOURCES} ${INPUT_SOURCES} ${WINDOW_SOURCES})
 
 add_library(openw67render ${HEADERS} ${SOURCES})
 
-target_link_libraries(openw67render glfw stb ${GL_LIB} ${GLFW_LIBRARIES} ${OPENGL_gl_LIBRARY})
+target_link_libraries(openw67render glfw ${GL_LIB} ${GLFW_LIBRARIES} ${OPENGL_gl_LIBRARY})

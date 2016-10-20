@@ -117,7 +117,8 @@ OpenTexture loadTexture(std::string path, TextureWrapMode wrapMode, TextureFilte
     if (data == nullptr)
         throw (std::string("Failed to load texture").append(LINE_SEPARATOR).append(stbi_failure_reason()));
 
-    OpenTexture texture = createTexture(data, static_cast<unsigned int>(width), static_cast<unsigned int>(height), wrapMode, filterMode);
+    OpenTexture texture = createTexture(data, static_cast<unsigned int>(width), static_cast<unsigned int>(height),
+                                        wrapMode, filterMode);
     stbi_image_free(data);
     return texture;
 }
