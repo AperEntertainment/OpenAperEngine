@@ -1,17 +1,18 @@
 #!/usr/bin/env bash
-# STB Directory
-stb="include/stb"
-# Check STB.
-echo "Checking STB at $stb..."
-if [ -d "$stb" ]
-then
-    echo "OK."
-else
-    mkdir ${stb}
-    # Download STB.
-    echo "Downloading needed files of STB..."
-    wget -P ${stb} https://raw.githubusercontent.com/nothings/stb/master/stb_image.h
-fi
+# Dependencies
+sh get_dependencies.sh
+# Check compiler
+#if [ -z ${CXX+x} ];
+#then
+#    export CXX=g++
+#    export CC=gcc
+#else
+#    echo "Compiler used: $CXX";
+#fi
+# Check installation
+#command -v ${CXX} >/dev/null 2>&1 || sh install_tools.sh
 # Build
-cmake CMakeLists.txt
+mkdir build/
+cd build/
+cmake ..
 make
