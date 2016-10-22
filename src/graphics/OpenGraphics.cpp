@@ -21,7 +21,7 @@
 #include <stdexcept>
 #include <iostream>
 
-namespace Openw67Render
+namespace w67r
 {
     OpenGraphics::OpenGraphics(float complementX, float complementY) : _complementX(complementX),
                                                                        _complementY(complementY)

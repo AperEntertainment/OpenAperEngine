@@ -23,7 +23,7 @@
 #include "Color.h"
 #include "../window/OpenWindow.h"
 
-namespace Openw67Render
+namespace w67r
 {
     class OpenGraphics
     {

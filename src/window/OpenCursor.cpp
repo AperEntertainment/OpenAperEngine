@@ -19,7 +19,7 @@
 
 #include "../../include/openw67render/window/OpenCursor.h"
 
-namespace Openw67Render
+namespace w67r
 {
     GLFWcursor *OpenCursor::getCursorPointer()
     {

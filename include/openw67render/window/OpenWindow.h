@@ -23,7 +23,7 @@
 #include <GLFW/glfw3.h>
 #include "OpenMonitor.h"
 
-namespace Openw67Render
+namespace w67r
 {
     class OpenWindow
     {

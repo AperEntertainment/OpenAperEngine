@@ -20,7 +20,7 @@
 #include <bits/stl_algobase.h>
 #include "../../include/openw67render/graphics/Color.h"
 
-namespace Openw67Render
+namespace w67r
 {
     Color::Color(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha) : _red(red), _green(green), _blue(blue),
                                                                             _alpha(alpha)

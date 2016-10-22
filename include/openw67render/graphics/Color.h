@@ -22,7 +22,7 @@
 
 #include "../OpenUtils.h"
 
-namespace Openw67Render
+namespace w67r
 {
     class Color
     {

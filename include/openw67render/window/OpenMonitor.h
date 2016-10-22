@@ -23,7 +23,7 @@
 #include <string>
 #include <GLFW/glfw3.h>
 
-namespace Openw67Render
+namespace w67r
 {
     /*! @brief Video mode type.
      *

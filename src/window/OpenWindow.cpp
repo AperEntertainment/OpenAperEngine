@@ -19,7 +19,7 @@
 
 #include "../../include/openw67render/window/OpenWindow.h"
 
-namespace Openw67Render
+namespace w67r
 {
     OpenWindow::OpenWindow(const char *title, unsigned int width, unsigned int height, OpenMonitor monitor,
                            bool fullscreen, unsigned int refreshRate) : title(title), _width(width), _height(height),

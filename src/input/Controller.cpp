@@ -19,7 +19,7 @@
 
 #include "../../include/openw67render/input/Controller.h"
 
-namespace Openw67Render
+namespace w67r
 {
     Controller::Controller(int id) : joystick(id)
     {
