@@ -16,9 +16,8 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with Openw67Render.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-#include <streambuf>
 #include "../../include/openw67render/input/ControllerManager.h"
+#include <stdexcept>
 
 namespace w67r
 {
