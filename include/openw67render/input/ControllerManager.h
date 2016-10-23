@@ -55,6 +55,14 @@ namespace w67r
          */
         Controller getController(uint8_t id);
 
+        /*! @brief Gets all controllers.
+         *
+         * This function returns an vector of all controllers.
+         *
+         * @return All controllers.
+         */
+        std::vector<Controller> getControllers() const;
+
         /*! @brief Adds an basic listener.
          *
          * This function adds a new listener.

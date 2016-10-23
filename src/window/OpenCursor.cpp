@@ -17,12 +17,25 @@
  * along with Openw67Render.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <stdexcept>
 #include "../../include/openw67render/window/OpenCursor.h"
 
 namespace w67r
 {
+    OpenCursor::OpenCursor(GLFWcursor *cursor) : cursor(cursor)
+    {
+    }
+
     GLFWcursor *OpenCursor::getCursorPointer()
     {
         return cursor;
+    }
+
+    OpenCursor createStandardCursor(unsigned int shape)
+    {
+        GLFWcursor *cursor = glfwCreateStandardCursor(shape);
+        if (cursor == nullptr)
+            throw std::runtime_error("Cannot create the standard cursor with shape: " + std::to_string(shape));
+        return OpenCursor(cursor);
     }
 }

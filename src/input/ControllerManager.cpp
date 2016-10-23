@@ -38,7 +38,7 @@ namespace w67r
     Controllers::Controllers()
     {
         controllers.reserve(GLFW_JOYSTICK_LAST);
-        for (uint8_t i = 0; i < GLFW_JOYSTICK_LAST; ++i)
+        for (uint8_t i = 0; i < GLFW_JOYSTICK_LAST; i++)
             controllers.emplace_back(Controller(i));
         glfwSetJoystickCallback(invokeControllerBaseEvent);
     }
@@ -48,6 +48,11 @@ namespace w67r
         if (id > controllers.size() && id > GLFW_JOYSTICK_LAST)
             throw std::out_of_range("Cannot get a Controller with the ID: " + std::to_string(id));
         return controllers[id];
+    }
+
+    std::vector<Controller> Controllers::getControllers() const
+    {
+        return controllers;
     }
 
     void Controllers::addBaseListener(ControllerBaseListener *listener)

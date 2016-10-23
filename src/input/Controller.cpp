@@ -32,7 +32,10 @@ namespace w67r
 
     const char *Controller::getName()
     {
-        return glfwGetJoystickName(joystick);
+        const char *name = glfwGetJoystickName(joystick);
+        if (name == NULL)
+            return "NULL";
+        return name;
     }
 
     bool Controller::isConnected()

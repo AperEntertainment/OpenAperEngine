@@ -30,8 +30,11 @@ namespace w67r
         GLFWcursor *cursor;
 
     public:
+        OpenCursor(GLFWcursor *cursor);
+
         GLFWcursor *getCursorPointer();
     };
 
+    OpenCursor createStandardCursor(unsigned int shape);
 }
 #endif //OPENW67RENDER_OPENCURSOR_H
