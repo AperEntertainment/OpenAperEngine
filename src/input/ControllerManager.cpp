@@ -18,6 +18,7 @@
  */
 #include "../../include/openw67render/input/ControllerManager.h"
 #include <stdexcept>
+#include <algorithm>
 
 namespace w67r
 {
@@ -39,6 +40,7 @@ namespace w67r
         controllers.reserve(GLFW_JOYSTICK_LAST);
         for (uint8_t i = 0; i < GLFW_JOYSTICK_LAST; ++i)
             controllers.emplace_back(Controller(i));
+        glfwSetJoystickCallback(invokeControllerBaseEvent);
     }
 
     Controller Controllers::getController(uint8_t id)
@@ -46,6 +48,25 @@ namespace w67r
         if (id > controllers.size() && id > GLFW_JOYSTICK_LAST)
             throw std::out_of_range("Cannot get a Controller with the ID: " + std::to_string(id));
         return controllers[id];
+    }
+
+    void Controllers::addBaseListener(ControllerBaseListener *listener)
+    {
+        if (!hasBaseListener(listener))
+            baseListeners.push_back(listener);
+    }
+
+    bool Controllers::removeBaseListener(ControllerBaseListener *listener)
+    {
+        if (!hasBaseListener(listener))
+            return false;
+        baseListeners.erase(std::remove(baseListeners.begin(), baseListeners.end(), listener), baseListeners.end());
+        return true;
+    }
+
+    bool Controllers::hasBaseListener(ControllerBaseListener *listener)
+    {
+        return std::find(baseListeners.begin(), baseListeners.end(), listener) != baseListeners.end();
     }
 
     std::vector<ControllerBaseListener *> Controllers::getBaseListeners() const
