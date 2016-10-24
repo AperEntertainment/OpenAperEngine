@@ -20,11 +20,8 @@
 #ifndef OPENW67RENDER_OPENIMAGE_H
 #define OPENW67RENDER_OPENIMAGE_H
 
-#define STB_IMAGE_IMPLEMENTATION
-
 #include <GLFW/glfw3.h>
 #include "../OpenUtils.h"
-#include "../../stb/stb_image.h"
 #include <string>
 
 enum TextureWrapMode

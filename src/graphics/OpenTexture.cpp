@@ -17,6 +17,10 @@
  * along with Openw67Render.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#define STB_IMAGE_IMPLEMENTATION
+
+#include "../../include/stb/stb_image.h"
+
 #include "../../include/openw67render/graphics/OpenTexture.h"
 
 OpenTexture::OpenTexture(uint8_t data[], unsigned int width, unsigned int height, TextureWrapMode wrapMode,
