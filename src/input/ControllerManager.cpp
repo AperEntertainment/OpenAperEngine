@@ -40,6 +40,10 @@ namespace w67r
         controllers.reserve(GLFW_JOYSTICK_LAST);
         for (uint8_t i = 0; i < GLFW_JOYSTICK_LAST; i++)
             controllers.emplace_back(Controller(i));
+    }
+
+    void Controllers::init()
+    {
         glfwSetJoystickCallback(invokeControllerBaseEvent);
     }
 

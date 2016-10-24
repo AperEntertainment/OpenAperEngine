@@ -43,6 +43,11 @@ namespace w67r
         Controllers();
 
     public:
+        /*! @brief Initializes the ControllerManager.
+         *
+         * This function inits the ControllerManager.
+         */
+        void init();
 
         /*! @brief Gets an controller by his defined ID.
          *
