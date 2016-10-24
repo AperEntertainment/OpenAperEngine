@@ -32,7 +32,7 @@ namespace w67r
             _runnable->initError();
             return;
         }
-        glfwSetErrorCallback(_runnable->glfwErrorCallback);
+        glfwSetErrorCallback(_runnable->glfwErrorCallback());
         Controllers::CONTROLLER_MANAGER.init();
         _runnable->init();
     }
