@@ -16,10 +16,8 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with Openw67Render.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-#include <GLFW/glfw3.h>
+#include "../include/openw67render/input/ControllerManager.h"
 #include "../include/openw67render/OpenContext.h"
-#include "input/ControllerManager.cpp"
 
 namespace w67r
 {
