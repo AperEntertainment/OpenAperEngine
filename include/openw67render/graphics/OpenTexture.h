@@ -22,6 +22,7 @@
 
 #include <GLFW/glfw3.h>
 #include "../OpenUtils.h"
+#include "../../stb/stb_image.h"
 #include <string>
 
 enum TextureWrapMode

@@ -18,7 +18,6 @@
  */
 
 #include "../../include/openw67render/graphics/OpenTexture.h"
-#include "../../include/stb/stb_image.h"
 
 OpenTexture::OpenTexture(uint8_t data[], unsigned int width, unsigned int height, TextureWrapMode wrapMode,
                          TextureFilterMode filterMode) : _width(width), _height(height), textureWrapMode(wrapMode),
