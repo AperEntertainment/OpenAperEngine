@@ -24,6 +24,15 @@ namespace w67r
     class Runnable
     {
     public:
+        /*! @brief Represents the GLFW error callback.
+         * 
+         * This function represents the GLFW's error callback.
+         *
+         * @param error An error code.
+         * @param description A UTF-8 encoded string describing the error.
+         */
+        virtual void glfwErrorCallback(int error, const char *description) = 0;
+
         /*! @brief Represents the initialization error callback.
          *
          * This function represents the initialization error callback.

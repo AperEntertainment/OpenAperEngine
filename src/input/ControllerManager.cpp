@@ -37,8 +37,8 @@ namespace w67r
 
     Controllers::Controllers()
     {
-        controllers.reserve(GLFW_JOYSTICK_LAST);
-        for (uint8_t i = 0; i < GLFW_JOYSTICK_LAST; i++)
+        controllers.reserve(GLFW_JOYSTICK_LAST + 1);
+        for (uint8_t i = 0; i < GLFW_JOYSTICK_LAST + 1; i++)
             controllers.emplace_back(Controller(i));
     }
 
