@@ -20,8 +20,9 @@
 #ifndef OPENW67RENDER_OPENGRAPHICS_H
 #define OPENW67RENDER_OPENGRAPHICS_H
 
-#include "Color.h"
 #include "../window/OpenWindow.h"
+#include "OpenTexture.h"
+#include "Color.h"
 
 namespace w67r
 {
@@ -117,8 +118,9 @@ namespace w67r
 
         void vertex3f(float x, float y, float z);
 
-        /**
-         * Draws a line in 2D.
+        /*! @brief Draws a line in 2D.
+         *
+         * This function draws a 2D line.
          *
          * @param x  X position of the first point.
          * @param y  Y position of the first point.
@@ -126,6 +128,31 @@ namespace w67r
          * @param y2 Y position of the second point.
          */
         void drawLine2D(float x, float y, float x2, float y2);
+
+        /*! @brief Draws an 2D image with a defined texture.
+         *
+         * This function draws an 2D image with a defined texture.
+         *
+         * @param texture The defined texture to draw.
+         * @param x X position of the image.
+         * @param y Y position of the image.
+         * @param width Width of the image.
+         * @param height Height of the image.
+         */
+        void drawImage(OpenTexture texture, float x, float y, float width, float height);
+
+        /*! @brief Draws an 2D image with a defined part texture.
+         *
+         * This function draws an 2D image with a defined part texture.
+         *
+         * @param texture The defined texture to draw.
+         * @param x X position of the image.
+         * @param y Y position of the image.
+         * @param width Width of the image.
+         * @param height Height of the image.
+         * @param region Part of the texture to draw.
+         */
+        void drawImage(OpenTexture texture, float x, float y, float width, float height, OpenTextureRegion region);
     };
 
     /**

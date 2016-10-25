@@ -23,6 +23,8 @@
 
 #include "../../include/openw67render/graphics/OpenTexture.h"
 
+/* OpenTexture implementation */
+
 OpenTexture::OpenTexture(uint8_t data[], unsigned int width, unsigned int height, TextureWrapMode wrapMode,
                          TextureFilterMode filterMode) : _width(width), _height(height), textureWrapMode(wrapMode),
                                                          textureFilterMode(filterMode)
@@ -93,6 +95,57 @@ OpenTexture::~OpenTexture()
         deleteTexture();
 }
 
+/* OpenTextureRegion implementation */
+
+OpenTextureRegion::OpenTextureRegion(float minX, float minY, float maxX, float maxY) : _minX(minX), _minY(minY),
+                                                                                       _maxX(maxX), _maxY(maxY)
+{
+}
+
+float OpenTextureRegion::minX() const
+{
+    return _minX;
+}
+
+float OpenTextureRegion::minY() const
+{
+    return _minY;
+}
+
+float OpenTextureRegion::maxX() const
+{
+    return _maxX;
+}
+
+float OpenTextureRegion::maxY() const
+{
+    return _minY;
+}
+
+void OpenTextureRegion::minX(float minX)
+{
+    _minX = minX;
+}
+
+void OpenTextureRegion::minY(float minY)
+{
+    _minY = minY;
+}
+
+void OpenTextureRegion::maxX(float maxX)
+{
+    _maxX = maxX;
+}
+
+void OpenTextureRegion::maxY(float maxY)
+{
+    _maxY = maxY;
+}
+
+const OpenTextureRegion OpenTextureRegion::BASE{0.0, 0.0, 1.0, 1.0};
+
+/* Load and create implementation */
+
 OpenTexture createTexture(uint8_t image[], unsigned int width, unsigned int height)
 {
     return createTexture(image, width, height, TextureWrapMode::CLAMP, TextureFilterMode::NEAREST);
@@ -124,4 +177,9 @@ OpenTexture loadTexture(std::string path, TextureWrapMode wrapMode, TextureFilte
                                         wrapMode, filterMode);
     stbi_image_free(data);
     return texture;
+}
+
+OpenTextureRegion genTextureRegion(int texWidth, int texHeight, int x, int y, int width, int height)
+{
+    return OpenTextureRegion((x / texWidth), (y / texHeight), ((x + width) / texWidth), ((y + height) / texHeight));
 }

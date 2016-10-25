@@ -158,6 +158,31 @@ namespace w67r
         endDraw();
     }
 
+    void OpenGraphics::drawImage(OpenTexture texture, float x, float y, float width, float height)
+    {
+        drawImage(texture, x, y, width, height, OpenTextureRegion::BASE);
+    }
+
+    void
+    OpenGraphics::drawImage(OpenTexture texture, float x, float y, float width, float height, OpenTextureRegion region)
+    {
+        x = x + _complementX;
+        y = y + _complementY;
+
+        texture.bind();
+        beginDraw(DRAW_TYPE_QUADS);
+        glTexCoord2f(region.minX(), region.minY());
+        vertex2f(x, y + height);
+        glTexCoord2f(region.minX(), region.maxY());
+        vertex2f(x, y);
+        glTexCoord2f(region.maxX(), region.maxY());
+        vertex2f(x + width, y);
+        glTexCoord2f(region.maxX(), region.minY());
+        vertex2f(x + width, y + height);
+        endDraw();
+        texture.unbind();
+    }
+
     void setViewport(int x, int y, int width, int height)
     {
         glViewport(x, y, width, height);

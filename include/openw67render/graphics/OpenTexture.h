@@ -119,6 +119,102 @@ public:
     void deleteTexture();
 };
 
+class OpenTextureRegion
+{
+private:
+    /*!
+     * Stores the top-left texture X coordinate, with a value between 0.0 and 1.0.
+     */
+    float _minX;
+
+    /*!
+     * Stores the top-left texture Y coordinate, with a value between 0.0 and 1.0.
+     */
+    float _minY;
+
+    /*!
+     * Stores the bottom-right texture X coordinate, with a value between 0.0 and 1.0.
+     */
+    float _maxX;
+
+    /*!
+     * Stores the bottom-right texture Y coordinate, with a value between 0.0 and 1.0.
+     */
+    float _maxY;
+
+public:
+    OpenTextureRegion(float minX, float minY, float maxX, float maxY);
+
+    /*! @brief Gets the top-left corner texture X coordinate.
+     *
+     * This function returns the top-left corner texture X coordinate.
+     *
+     * @return X coordinate between 0.0 and 1.0.
+     */
+    float minX() const;
+
+    /*! @brief Gets the top-left corner texture Y coordinate.
+     *
+     * This function returns the top-left corner texture Y coordinate.
+     *
+     * @return Y coordinate between 0.0 and 1.0.
+     */
+    float minY() const;
+
+    /*! @brief Gets the bottom-right corner texture X coordinate.
+     *
+     * This function returns the bottom-right corner texture X coordinate.
+     *
+     * @return X coordinate between 0.0 and 1.0.
+     */
+    float maxX() const;
+
+    /*! @brief Gets the bottom-right corner texture Y coordinate.
+     *
+     * This function returns the bottom-right corner texture Y coordinate.
+     *
+     * @return Y coordinate between 0.0 and 1.0.
+     */
+    float maxY() const;
+
+    /*! @brief Sets the top-left corner texture X coordinate.
+     *
+     * This function sets the top-left corner texture X coordinate.
+     *
+     * @param minX X coordinate between 0.0 and 1.0.
+     */
+    void minX(float minX);
+
+    /*! @brief Sets the top-left corner texture Y coordinate.
+     *
+     * This function sets the top-left corner texture Y coordinate.
+     *
+     * @param minY Y coordinate between 0.0 and 1.0.
+     */
+    void minY(float minY);
+
+    /*! @brief Sets the bottom-right corner texture X coordinate.
+     *
+     * This function sets the bottom-right corner texture X coordinate.
+     *
+     * @param maxX X coordinate between 0.0 and 1.0.
+     */
+    void maxX(float maxX);
+
+    /*! @brief Sets the bottom-right corner texture Y coordinate.
+     *
+     * This function sets the bottom-right corner texture Y coordinate.
+     *
+     * @param maxY Y coordinate between 0.0 and 1.0.
+     */
+    void maxY(float maxY);
+
+    /*!
+     * Represents the whole texture.
+     */
+    const static OpenTextureRegion BASE;
+};
+
 OpenTexture createTexture(uint8_t image[], unsigned int width, unsigned int height);
 
 OpenTexture createTexture(uint8_t image[], unsigned int width, unsigned int height, TextureWrapMode wrapMode,
@@ -127,5 +223,7 @@ OpenTexture createTexture(uint8_t image[], unsigned int width, unsigned int heig
 OpenTexture loadTexture(std::string path);
 
 OpenTexture loadTexture(std::string path, TextureWrapMode wrapMode, TextureFilterMode filterMode);
+
+OpenTextureRegion genTextureRegion(int texWidth, int texHeight, int x, int y, int width, int height);
 
 #endif //OPENW67RENDER_OPENIMAGE_H
