@@ -20,6 +20,7 @@
 #ifndef OPENW67RENDER_COLOR_H
 #define OPENW67RENDER_COLOR_H
 
+#include <stdint.h>
 #include "../OpenUtils.h"
 
 namespace w67r

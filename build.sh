@@ -12,7 +12,9 @@ sh get_dependencies.sh
 # Check installation
 #command -v ${CXX} >/dev/null 2>&1 || sh install_tools.sh
 # Build
-mkdir build/
+if [ -d "$stb" ]
+then
+    mkdir build/
+fi
 cd build/
-cmake ..
-make
+cmake .. && make

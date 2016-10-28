@@ -20,43 +20,42 @@
 #ifndef OPENW67RENDER_OPENWINDOW_H
 #define OPENW67RENDER_OPENWINDOW_H
 
-#include <GLFW/glfw3.h>
-#include "OpenMonitor.h"
+#include <SDL2/SDL_video.h>
 
 namespace w67r
 {
     class OpenWindow
     {
     protected:
-        GLFWwindow *window;
-        const char *title;
+        SDL_Window *_window;
+        const char *_title;
         unsigned int _width;
         unsigned int _height;
-        unsigned int x;
-        unsigned int y;
-        bool visible = false;
-        bool fullscreen;
-        unsigned int refreshRate;
-        OpenMonitor _monitor;
+        unsigned int _x;
+        unsigned int _y;
+        bool _resizable;
+        bool _visible = false;
+        bool _fullscreen;
+        unsigned int _refreshRate;
 
         /*! @brief Updates the window's size data.
          *
-         * The function will call glfwGetWindowSize and update the fields _width and _height of OpenWindow.
+         * The function will call setWindowSize_Lib (Openw67Render function) and update the fields _width and _height of OpenWindow.
          * It called in the library only.
          */
         void updateSizeData();
 
     public:
-        OpenWindow(const char *title, unsigned int width, unsigned int height, OpenMonitor monitor,
-                   bool fullscreen = false, unsigned int refreshRate = 60);
+        OpenWindow(const char *title, unsigned int x, unsigned int y, unsigned int width, unsigned int height,
+                   bool resizable = true, bool fullscreen = false, unsigned int refreshRate = 60);
 
         ~OpenWindow();
 
-        /*! @brief Gets the reference of the GLFW's window.
+        /*! @brief Gets the reference of the SDL's window.
          *
-         * @return Reference of the GLFW's window.
+         * @return Reference of the SDL's window.
          */
-        GLFWwindow *getWindowPointer();
+        SDL_Window *getWindowPointer();
 
         void init();
 
@@ -97,7 +96,7 @@ namespace w67r
         /*! @brief Sets the width of the window.
          *
          * The function will resize the window with the new specified width.
-         * It will not call setSize(unsigned int width, unsigned int height), it will update size data and then it will call glfwSetWindowSize.
+         * It will not call setSize(unsigned int width, unsigned int height), it will update size data and then it will call setWindowSize_Lib (Openw67Render function).
          *
          * @param width The width of the window.
          */
@@ -112,7 +111,7 @@ namespace w67r
         /*! @brief Sets the height of the window.
          *
          * The function will resize the window with the new specified height.
-         * It will not call setSize(unsigned int width, unsigned int height), it will update size data and then it will call glfwSetWindowSize.
+         * It will not call setSize(unsigned int width, unsigned int height), it will update size data and then it will call setWindowSize_Lib (Openw67Render function).
          *
          * @param height The height of the window.
          */
@@ -121,7 +120,7 @@ namespace w67r
         /*! @brief Sets the size of the window.
          *
          * The function will resize the window with the new specified width and the new specified height.
-         * It will not call setWidth and setHeight, it will call glfwSetWindowSize directly.
+         * It will not call setWidth and setHeight, it will call setWindowSize_Lib (Openw67Render function) directly.
          *
          * @param width Width of the window.
          * @param height Height of the window.
@@ -138,19 +137,14 @@ namespace w67r
         void
         setMaximumSize(unsigned int minWidth, unsigned int minHeight, unsigned int maxWidth, unsigned int maxHeight);
 
-        void
-        setFullscreen(bool isFullscreen, unsigned int xpos, unsigned int ypos, unsigned int width, unsigned int height);
+        void setFullscreen(bool isFullscreen);
 
         bool isFullscreen();
-
-        void setMonitor(OpenMonitor monitor);
-
-        OpenMonitor getMonitor();
     };
 
     inline const char *OpenWindow::getTitle()
     {
-        return title;
+        return _title;
     }
 }
 

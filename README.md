@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/w67clement/cppw67render.svg?branch=master)](https://travis-ci.org/w67clement/cppw67render)
 
-A graphical library using **GLFW** and **OpenGL** written in **C++**.
+A graphical library using **SDL** and **OpenGL** written in **C++**.
 
 ## Setting up
 

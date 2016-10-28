@@ -20,9 +20,9 @@
 #ifndef OPENW67RENDER_OPENIMAGE_H
 #define OPENW67RENDER_OPENIMAGE_H
 
-#include <GLFW/glfw3.h>
 #include "../OpenUtils.h"
 #include <string>
+#include <SDL2/SDL_opengl.h>
 
 enum TextureWrapMode
 {

@@ -20,21 +20,21 @@
 #ifndef OPENW67RENDER_OPENCURSOR_H
 #define OPENW67RENDER_OPENCURSOR_H
 
-#include <GLFW/glfw3.h>
+#include <SDL2/SDL_mouse.h>
 
 namespace w67r
 {
     class OpenCursor
     {
     private:
-        GLFWcursor *cursor;
+        SDL_Cursor *_cursor;
 
     public:
-        OpenCursor(GLFWcursor *cursor);
+        OpenCursor(SDL_Cursor *cursor);
 
-        GLFWcursor *getCursorPointer();
+        SDL_Cursor *getCursorPointer();
     };
 
-    OpenCursor createStandardCursor(unsigned int shape);
+    OpenCursor createStandardCursor(SDL_SystemCursor shape);
 }
 #endif //OPENW67RENDER_OPENCURSOR_H

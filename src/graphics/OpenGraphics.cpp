@@ -41,7 +41,7 @@ namespace w67r
     void OpenGraphics::setOrthoOn(OpenWindow window)
     {
         int width, height;
-        glfwGetFramebufferSize(window.getWindowPointer(), &width, &height);
+        SDL_GetWindowSize(window.getWindowPointer(), &width, &height);
         glMatrixMode(GL_PROJECTION);
         glPushMatrix(); // preserve perspective view
         glLoadIdentity(); // clear the perspective matrix
@@ -103,7 +103,7 @@ namespace w67r
         return glIsEnabled(GL_TEXTURE_2D);
     }
 
-    float toFloatColor(short255 color)
+    float toFloatColor(uint8_t color)
     {
         return static_cast<float>(color / 255.0);
     }

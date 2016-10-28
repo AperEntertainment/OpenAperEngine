@@ -22,18 +22,18 @@
 
 namespace w67r
 {
-    OpenCursor::OpenCursor(GLFWcursor *cursor) : cursor(cursor)
+    OpenCursor::OpenCursor(SDL_Cursor *cursor) : _cursor(cursor)
     {
     }
 
-    GLFWcursor *OpenCursor::getCursorPointer()
+    SDL_Cursor *OpenCursor::getCursorPointer()
     {
-        return cursor;
+        return _cursor;
     }
 
-    OpenCursor createStandardCursor(unsigned int shape)
+    OpenCursor createStandardCursor(SDL_SystemCursor shape)
     {
-        GLFWcursor *cursor = glfwCreateStandardCursor(shape);
+        SDL_Cursor *cursor = SDL_CreateSystemCursor(shape);
         if (cursor == nullptr)
             throw std::runtime_error("Cannot create the standard cursor with shape: " + std::to_string(shape));
         return OpenCursor(cursor);
