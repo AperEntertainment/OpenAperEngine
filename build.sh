@@ -14,6 +14,9 @@ sh get_dependencies.sh
 # Build
 if [ -d "$stb" ]
 then
+    echo "Cleaning build directory..."
+    mkdir build/
+else
     mkdir build/
 fi
 cd build/
