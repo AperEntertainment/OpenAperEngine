@@ -20,4 +20,4 @@ set(SOURCES ${GRAPHICS_SOURCES} ${INPUT_SOURCES} ${WINDOW_SOURCES} ${BASE_SOURCE
 
 add_library(openw67render ${HEADERS} ${SOURCES})
 
-target_link_libraries(openw67render ${SDL2_LIBRARY})
+target_link_libraries(openw67render ${OPENGL_gl_LIBRARY} ${SDL2_LIBRARY})

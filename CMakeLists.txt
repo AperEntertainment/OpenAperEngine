@@ -10,8 +10,9 @@ if (MINGW)
     set(SDL2_PATH "C:\\SDL2\\i686-w64-mingw32")
 endif (MINGW)
 
+find_package(OpenGL REQUIRED)
 find_package(SDL2 REQUIRED)
 
-include_directories(${SDL2_INCLUDE_DIR})
+include_directories(${OPENGL_INCLUDE_DIR} ${SDL2_INCLUDE_DIR})
 
 add_subdirectory(src)
