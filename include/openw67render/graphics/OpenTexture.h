@@ -22,7 +22,14 @@
 
 #include "../OpenUtils.h"
 #include <string>
+
+#ifdef _WIN32
+
+#include <SDL_opengl.h>
+
+#else
 #include <SDL2/SDL_opengl.h>
+#endif
 
 enum TextureWrapMode
 {

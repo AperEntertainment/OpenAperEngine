@@ -7,6 +7,7 @@ set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 if (MINGW)
+    # Please install SDL2 at this path, or change this path...
     set(SDL2_PATH "C:\\SDL2\\i686-w64-mingw32")
 endif (MINGW)
 

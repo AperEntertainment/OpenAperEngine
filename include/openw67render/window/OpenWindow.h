@@ -20,7 +20,13 @@
 #ifndef OPENW67RENDER_OPENWINDOW_H
 #define OPENW67RENDER_OPENWINDOW_H
 
+#ifdef _WIN32
+
+#include <SDL_video.h>
+
+#else
 #include <SDL2/SDL_video.h>
+#endif
 
 namespace w67r
 {

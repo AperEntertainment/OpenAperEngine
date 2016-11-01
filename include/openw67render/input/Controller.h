@@ -20,7 +20,13 @@
 #ifndef OPENW67RENDER_CONTROLLER_H
 #define OPENW67RENDER_CONTROLLER_H
 
+#ifdef _WIN32
+
+#include <SDL_joystick.h>
+
+#else
 #include <SDL2/SDL_joystick.h>
+#endif
 
 namespace w67r
 {

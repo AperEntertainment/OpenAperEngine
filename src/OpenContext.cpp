@@ -18,7 +18,14 @@
  */
 #include "../include/openw67render/input/ControllerManager.h"
 #include "../include/openw67render/OpenContext.h"
+
+#ifdef _WIN32
+
+#include <SDL.h>
+
+#else
 #include <SDL2/SDL.h>
+#endif
 
 namespace w67r
 {

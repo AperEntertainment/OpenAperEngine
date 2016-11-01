@@ -20,7 +20,13 @@
 #ifndef OPENW67RENDER_OPENCURSOR_H
 #define OPENW67RENDER_OPENCURSOR_H
 
+#ifdef _WIN32
+
+#include <SDL_mouse.h>
+
+#else
 #include <SDL2/SDL_mouse.h>
+#endif
 
 namespace w67r
 {
