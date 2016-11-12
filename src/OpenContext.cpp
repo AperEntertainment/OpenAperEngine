@@ -19,14 +19,6 @@
 #include "../include/openw67render/input/ControllerManager.h"
 #include "../include/openw67render/OpenContext.h"
 
-#ifdef _WIN32
-
-#include <SDL.h>
-
-#else
-#include <SDL2/SDL.h>
-#endif
-
 namespace w67r
 {
     Context::Context(Runnable *runnable) : _runnable(runnable)
@@ -35,11 +27,12 @@ namespace w67r
 
     void Context::init()
     {
-        if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
+        if (!glfwInit())
         {
-            _runnable->initError(SDL_GetError());
+            _runnable->initError();
             return;
         }
+        glfwSetErrorCallback(_runnable->glfwErrorCallback());
         Controllers::CONTROLLER_MANAGER.init();
         _runnable->init();
     }

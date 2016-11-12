@@ -22,29 +22,35 @@
 
 namespace w67r
 {
+    void invokeControllerBaseEvent(int joy, int event)
+    {
+        Controllers &controllers = Controllers::CONTROLLER_MANAGER;
+        Controller controller = controllers.getController(static_cast<uint8_t >(joy));
+        for (ControllerBaseListener *listener : controllers.getBaseListeners())
+        {
+            if (event == GLFW_CONNECTED)
+                listener->connect(controller);
+            else if (event == GLFW_DISCONNECTED)
+                listener->disconnect(controller);
+        }
+    }
+
     Controllers::Controllers()
     {
-        unsigned int joysticks = static_cast<unsigned int>(SDL_NumJoysticks());
-        if (joysticks == 0)
-        {
-            controllers.reserve(joysticks);
-            for (uint8_t i = 0; i < joysticks; i++)
-                controllers.emplace_back(Controller(SDL_JoystickOpen(i)));
-        }
+        controllers.reserve(GLFW_JOYSTICK_LAST + 1);
+        for (uint8_t i = 0; i < GLFW_JOYSTICK_LAST + 1; i++)
+            controllers.emplace_back(Controller(i));
     }
 
     void Controllers::init()
     {
+        glfwSetJoystickCallback(invokeControllerBaseEvent);
     }
 
     Controller Controllers::getController(uint8_t id)
     {
-        if (id > SDL_NumJoysticks() || SDL_NumJoysticks() > id)
+        if (id > controllers.size() && id > GLFW_JOYSTICK_LAST)
             throw std::out_of_range("Cannot get a Controller with the ID: " + std::to_string(id));
-        if (id > controllers.size())
-        {
-
-        }
         return controllers[id];
     }
 
@@ -53,7 +59,7 @@ namespace w67r
         return controllers;
     }
 
-    /*void Controllers::addBaseListener(ControllerBaseListener *listener)
+    void Controllers::addBaseListener(ControllerBaseListener *listener)
     {
         if (!hasBaseListener(listener))
             baseListeners.push_back(listener);
@@ -75,7 +81,7 @@ namespace w67r
     std::vector<ControllerBaseListener *> Controllers::getBaseListeners() const
     {
         return baseListeners;
-    }*/
+    }
 
     Controllers Controllers::CONTROLLER_MANAGER{};
 }

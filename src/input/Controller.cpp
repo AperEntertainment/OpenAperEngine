@@ -21,23 +21,18 @@
 
 namespace w67r
 {
-    Controller::Controller(SDL_Joystick *id) : joystick(id)
+    Controller::Controller(int id) : joystick(id)
     {
     }
 
-    Controller::~Controller()
-    {
-        close();
-    }
-
-    SDL_Joystick *Controller::getPointer() const
+    int Controller::getId() const
     {
         return joystick;
     }
 
     const char *Controller::getName()
     {
-        const char *name = SDL_JoystickName(joystick);
+        const char *name = glfwGetJoystickName(joystick);
         if (name == NULL)
             return "NULL";
         return name;
@@ -45,11 +40,6 @@ namespace w67r
 
     bool Controller::isConnected()
     {
-        return SDL_JoystickGetAttached(joystick);
-    }
-
-    void Controller::close()
-    {
-        SDL_JoystickClose(joystick);
+        return glfwJoystickPresent(joystick) == 1;
     }
 }

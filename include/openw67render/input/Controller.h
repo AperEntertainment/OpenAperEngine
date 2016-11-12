@@ -20,33 +20,26 @@
 #ifndef OPENW67RENDER_CONTROLLER_H
 #define OPENW67RENDER_CONTROLLER_H
 
-#ifdef _WIN32
-
-#include <SDL_joystick.h>
-
-#else
-#include <SDL2/SDL_joystick.h>
-#endif
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
 
 namespace w67r
 {
     class Controller
     {
     private:
-        SDL_Joystick *joystick;
+        const int joystick;
 
     public:
-        Controller(SDL_Joystick *id);
+        Controller(int id);
 
-        ~Controller();
-
-        /*! @brief Gets the pointer of the controller.
+        /*! @brief Gets the ID of the controller.
          *
-         * This function returns the pointer of the controller.
+         * This function returns the ID of the controller.
          *
-         * @return Pointer of the controller.
+         * @return ID of the controller.
          */
-        SDL_Joystick *getPointer() const;
+        int getId() const;
 
         /*! @brief Gets the name of the controller.
          *
@@ -63,13 +56,6 @@ namespace w67r
          * @return True if the controller is connected else false.
          */
         bool isConnected();
-
-        /*! @brief Closes the device.
-         *
-         * This function closes the connected device, if you call it, isConnected will return false and you will can't
-         * use any function here.
-         */
-        void close();
     };
 }
 

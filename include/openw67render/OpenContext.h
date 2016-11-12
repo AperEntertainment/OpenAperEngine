@@ -24,11 +24,19 @@ namespace w67r
     class Runnable
     {
     public:
+        /*! @brief Gets the GLFW error callback to set.
+         *
+         * This function returns the function for set GLFW's error callback.
+         *
+         * @return The GLFW error callback to set.
+         */
+        virtual GLFWerrorfun glfwErrorCallback() = 0;
+
         /*! @brief Represents the initialization error callback.
          *
          * This function represents the initialization error callback.
          */
-        virtual void initError(const char *error) = 0;
+        virtual void initError() = 0;
 
         /*!
          *  This function is your initialization function.

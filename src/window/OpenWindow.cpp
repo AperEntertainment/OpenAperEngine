@@ -21,69 +21,56 @@
 
 namespace w67r
 {
-    /* Utilities */
-
-    void setWindowSize_LIB(SDL_Window *window, int width, int height)
-    {
-        SDL_SetWindowSize(window, width, height);
-    }
-
-    /* OpenWindow */
-
-    OpenWindow::OpenWindow(const char *title, unsigned int x, unsigned int y, unsigned int width, unsigned int height,
-                           bool resizable, bool fullscreen, unsigned int refreshRate) : _title(title), _x(x), _y(y),
-                                                                                        _width(width),
-                                                                                        _height(height),
-                                                                                        _resizable(
-                                                                                                resizable),
-                                                                                        _fullscreen(
-                                                                                                fullscreen),
-                                                                                        _refreshRate(
-                                                                                                refreshRate)
+    OpenWindow::OpenWindow(const char *title, unsigned int width, unsigned int height, OpenMonitor monitor,
+                           bool fullscreen, unsigned int refreshRate) : title(title), _width(width), _height(height),
+                                                                        _monitor(monitor),
+                                                                        fullscreen(fullscreen), refreshRate(refreshRate)
     {
         init();
     }
 
-    SDL_Window *OpenWindow::getWindowPointer()
+    GLFWwindow *OpenWindow::getWindowPointer()
     {
-        return _window;
+        return window;
     }
 
     void OpenWindow::init()
     {
-        _window = SDL_CreateWindow(_title, _x, _y, _width, _height, SDL_WINDOW_HIDDEN);
-        SDL_SetWindowResizable(_window, (_resizable ? SDL_TRUE : SDL_FALSE));
+        if (fullscreen)
+            window = glfwCreateWindow(_width, _height, title, _monitor.getMonitorPointer(), nullptr);
+        else
+            window = glfwCreateWindow(_width, _height, title, nullptr, nullptr);
     }
 
     void OpenWindow::destroy()
     {
-        if (_window)
-            SDL_DestroyWindow(_window);
+        if (window)
+            glfwDestroyWindow(window);
     }
 
     void OpenWindow::setTitle(const char *title)
     {
-        OpenWindow::_title = title;
-        SDL_SetWindowTitle(_window, title);
+        OpenWindow::title = title;
+        glfwSetWindowTitle(window, title);
     }
 
     inline bool OpenWindow::isVisible()
     {
-        return _visible;
+        return visible;
     }
 
     void OpenWindow::setVisible(bool visible)
     {
         if (visible != isVisible())
         {
-            if (!_window)
+            if (!window)
             {
                 if (visible)
-                    SDL_ShowWindow(_window);
+                    glfwShowWindow(window);
                 else
-                    SDL_HideWindow(_window);
+                    glfwHideWindow(window);
             }
-            OpenWindow::_visible = visible;
+            OpenWindow::visible = visible;
         }
     }
 
@@ -102,7 +89,7 @@ namespace w67r
     {
         updateSizeData();
         _width = width;
-        setWindowSize_LIB(_window, _width, _height);
+        glfwSetWindowSize(window, _width, _height);
     }
 
     unsigned int OpenWindow::getHeight()
@@ -115,7 +102,7 @@ namespace w67r
     {
         updateSizeData();
         _height = height;
-        setWindowSize_LIB(_window, _width, _height);
+        glfwSetWindowSize(window, _width, _height);
     }
 
     void OpenWindow::setSize(unsigned int width, unsigned int height)
@@ -124,14 +111,14 @@ namespace w67r
         // Update OpenWindow's fields before.
         _width = width;
         _height = height;
-        // Call the SDL function.
-        setWindowSize_LIB(_window, _width, _height);
+        // Call the GLFW function.
+        glfwSetWindowSize(window, _width, _height);
     }
 
     void OpenWindow::updateSizeData()
     {
         int width, height;
-        SDL_GetWindowSize(_window, &width, &height);
+        glfwGetWindowSize(window, &width, &height);
         _width = static_cast<unsigned int>(width);
         _height = static_cast<unsigned int>(height);
     }
@@ -139,24 +126,50 @@ namespace w67r
     void OpenWindow::setMaximumSize(unsigned int minWidth, unsigned int minHeight, unsigned int maxWidth,
                                     unsigned int maxHeight)
     {
-        // Call the SDL function.
-        SDL_SetWindowMinimumSize(_window, minWidth, minHeight);
-        SDL_SetWindowMaximumSize(_window, maxWidth, maxHeight);
+        // Call the GLFW function.
+        glfwSetWindowSizeLimits(window, minWidth, minHeight, maxWidth, maxHeight);
     }
 
-    void OpenWindow::setFullscreen(bool isFullscreen)
+    void OpenWindow::setFullscreen(bool isFullscreen, unsigned int xpos, unsigned int ypos, unsigned int width,
+                                   unsigned int height)
     {
         if (OpenWindow::isFullscreen() != isFullscreen)
         {
-            if (_fullscreen)
-                SDL_SetWindowFullscreen(_window, SDL_WINDOW_FULLSCREEN);
+            if (fullscreen)
+                glfwSetWindowMonitor(window, getMonitor().getMonitorPointer(), xpos, ypos, width, height, refreshRate);
             else
-                SDL_SetWindowFullscreen(_window, 0);
+                glfwSetWindowMonitor(window, nullptr, xpos, ypos, width, height, refreshRate);
         }
     }
 
     bool OpenWindow::isFullscreen()
     {
-        return _fullscreen;
+        fullscreen = glfwGetWindowMonitor(window) != nullptr;
+        return fullscreen;
+    }
+
+    void OpenWindow::setMonitor(OpenMonitor monitor)
+    {
+        _monitor = monitor;
+        if (isFullscreen())
+        {
+            int posX, posY;
+            glfwGetWindowPos(window, &posX, &posY);
+            updateSizeData();
+            glfwSetWindowMonitor(window, monitor.getMonitorPointer(), posX, posY, _width, _height, refreshRate);
+        }
+    }
+
+    OpenMonitor OpenWindow::getMonitor()
+    {
+        GLFWmonitor *monitor;
+        if (_monitor.getMonitorPointer() != (monitor = glfwGetWindowMonitor(window)))
+        {
+            if (monitor == glfwGetPrimaryMonitor())
+                _monitor = OpenMonitor::PRIMARY_MONITOR;
+            else
+                _monitor = OpenMonitor(monitor);
+        }
+        return _monitor;
     }
 }

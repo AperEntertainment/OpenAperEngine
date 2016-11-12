@@ -20,16 +20,10 @@
 #ifndef OPENW67RENDER_OPENIMAGE_H
 #define OPENW67RENDER_OPENIMAGE_H
 
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
 #include "../OpenUtils.h"
 #include <string>
-
-#ifdef _WIN32
-
-#include <SDL_opengl.h>
-
-#else
-#include <SDL2/SDL_opengl.h>
-#endif
 
 enum TextureWrapMode
 {

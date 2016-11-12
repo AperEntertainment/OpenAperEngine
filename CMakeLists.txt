@@ -1,19 +1,38 @@
-cmake_minimum_required(VERSION 2.8.7)
+cmake_minimum_required(VERSION 3.1)
 project(openw67render)
 
 # Add local find scripts to CMAKE path.
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+find_package(GLEW REQUIRED)
 
-if (MINGW)
-    # Please install SDL2 at this path, or change this path...
-    set(SDL2_PATH "C:\\SDL2\\i686-w64-mingw32")
-endif (MINGW)
+add_subdirectory(dependencies/glfw)
+include_directories(dependencies/glfw/include)
+include_directories(${GLEW_INCLUDE_DIR})
 
-find_package(OpenGL REQUIRED)
-find_package(SDL2 REQUIRED)
+set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 
-include_directories(${OPENGL_INCLUDE_DIR} ${SDL2_INCLUDE_DIR})
+set(GRAPHICS_HEADERS include/openw67render/graphics/Color.h include/openw67render/graphics/OpenGraphics.h include/openw67render/graphics/OpenTexture.h)
+set(INPUT_HEADERS include/openw67render/input/Controller.h include/openw67render/input/ControllerManager.h)
+set(WINDOW_HEADERS include/openw67render/window/OpenCursor.h include/openw67render/window/OpenMonitor.h include/openw67render/window/OpenWindow.h)
+set(BASE_HEADERS include/openw67render/OpenUtils.h include/openw67render/OpenContext.h)
 
-add_subdirectory(src)
+set(STB_HEADERS include/stb/stb_image.h)
+
+set(HEADERS ${STB_HEADERS} ${GRAPHICS_HEADERS} ${INPUT_HEADERS} ${WINDOW_HEADERS} ${BASE_HEADERS})
+
+set(GRAPHICS_SOURCES src/graphics/Color.cpp src/graphics/OpenGraphics.cpp src/graphics/OpenTexture.cpp)
+set(INPUT_SOURCES src/input/Controller.cpp src/input/ControllerManager.cpp)
+set(WINDOW_SOURCES src/window/OpenCursor.cpp src/window/OpenMonitor.cpp src/window/OpenWindow.cpp)
+set(BASE_SOURCES src/OpenContext.cpp)
+
+set(SOURCES ${GRAPHICS_SOURCES} ${INPUT_SOURCES} ${WINDOW_SOURCES} ${BASE_SOURCES})
+
+add_library(openw67render ${HEADERS} ${SOURCES})
+
+set_property(TARGET openw67render PROPERTY CXX_STANDARD_REQUIRED ON)
+set_property(TARGET openw67render PROPERTY CXX_STANDARD 11)
+
+target_link_libraries(openw67render glfw ${GLEW_LIBRARY} ${GLFW_LIBRARIES})

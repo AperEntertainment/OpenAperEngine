@@ -38,7 +38,7 @@ namespace w67r
     private:
         std::vector<Controller> controllers;
 
-        //std::vector<ControllerBaseListener *> baseListeners;
+        std::vector<ControllerBaseListener *> baseListeners;
 
         Controllers();
 
@@ -68,12 +68,12 @@ namespace w67r
          */
         std::vector<Controller> getControllers() const;
 
-        /*/*! @brief Adds an basic listener.
+        /*! @brief Adds an basic listener.
          *
          * This function adds a new listener.
          *
          * @param listener The pointer of the listener to add.
-         *\/
+         */
         void addBaseListener(ControllerBaseListener *listener);
 
         /*! @brief Removes an basic listener.
@@ -83,7 +83,7 @@ namespace w67r
          * @param listener The pointer of the listener to remove.
          *
          * @return True whether the listener was removed else false.
-         *\/
+         */
         bool removeBaseListener(ControllerBaseListener *listener);
 
         /*! @brief Checks whether an basic listener is registered.
@@ -93,10 +93,10 @@ namespace w67r
          * @param listener The pointer of the listener to check.
          *
          * @return True whether the listener was found else false.
-         *\/
+         */
         bool hasBaseListener(ControllerBaseListener *listener);
 
-        std::vector<ControllerBaseListener *> getBaseListeners() const;*/
+        std::vector<ControllerBaseListener *> getBaseListeners() const;
 
         // For singleton.
         Controllers(Controllers const &) = delete;

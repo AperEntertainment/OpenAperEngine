@@ -20,8 +20,8 @@
 #ifndef OPENW67RENDER_OPENGRAPHICS_H
 #define OPENW67RENDER_OPENGRAPHICS_H
 
-#include "../window/OpenWindow.h"
 #include "OpenTexture.h"
+#include "../window/OpenWindow.h"
 #include "Color.h"
 
 namespace w67r
@@ -64,7 +64,7 @@ namespace w67r
          *
          * @param window Window to get size.
          */
-        void setOrthoOn(OpenWindow window);
+        void setOrthoOn(OpenWindow *window);
 
         /*! @brief Disables 2D rendering.
          *

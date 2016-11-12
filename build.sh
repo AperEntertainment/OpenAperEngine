@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Dependencies
-sh get_dependencies.sh
+sh get_stb.sh
 # Check compiler
 #if [ -z ${CXX+x} ];
 #then
@@ -12,12 +12,7 @@ sh get_dependencies.sh
 # Check installation
 #command -v ${CXX} >/dev/null 2>&1 || sh install_tools.sh
 # Build
-if [ -d "$stb" ]
-then
-    echo "Cleaning build directory..."
-    mkdir build/
-else
-    mkdir build/
-fi
+mkdir build/
 cd build/
-cmake .. && make
+cmake ..
+make
