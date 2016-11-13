@@ -32,12 +32,12 @@ namespace w67r
         const char *title;
         unsigned int _width;
         unsigned int _height;
+        OpenMonitor _monitor;
+        bool _fullscreen;
+        unsigned int _refreshRate;
         unsigned int x;
         unsigned int y;
         bool visible = false;
-        bool fullscreen;
-        unsigned int refreshRate;
-        OpenMonitor _monitor;
 
         /*! @brief Updates the window's size data.
          *

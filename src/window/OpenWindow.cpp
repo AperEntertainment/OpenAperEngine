@@ -24,7 +24,7 @@ namespace w67r
     OpenWindow::OpenWindow(const char *title, unsigned int width, unsigned int height, OpenMonitor monitor,
                            bool fullscreen, unsigned int refreshRate) : title(title), _width(width), _height(height),
                                                                         _monitor(monitor),
-                                                                        fullscreen(fullscreen), refreshRate(refreshRate)
+                                                                        _fullscreen(fullscreen), _refreshRate(refreshRate)
     {
         init();
     }
@@ -36,7 +36,7 @@ namespace w67r
 
     void OpenWindow::init()
     {
-        if (fullscreen)
+        if (_fullscreen)
             window = glfwCreateWindow(_width, _height, title, _monitor.getMonitorPointer(), nullptr);
         else
             window = glfwCreateWindow(_width, _height, title, nullptr, nullptr);
@@ -135,17 +135,17 @@ namespace w67r
     {
         if (OpenWindow::isFullscreen() != isFullscreen)
         {
-            if (fullscreen)
-                glfwSetWindowMonitor(window, getMonitor().getMonitorPointer(), xpos, ypos, width, height, refreshRate);
+            if (_fullscreen)
+                glfwSetWindowMonitor(window, getMonitor().getMonitorPointer(), xpos, ypos, width, height, _refreshRate);
             else
-                glfwSetWindowMonitor(window, nullptr, xpos, ypos, width, height, refreshRate);
+                glfwSetWindowMonitor(window, nullptr, xpos, ypos, width, height, _refreshRate);
         }
     }
 
     bool OpenWindow::isFullscreen()
     {
-        fullscreen = glfwGetWindowMonitor(window) != nullptr;
-        return fullscreen;
+        _fullscreen = glfwGetWindowMonitor(window) != nullptr;
+        return _fullscreen;
     }
 
     void OpenWindow::setMonitor(OpenMonitor monitor)
@@ -156,7 +156,7 @@ namespace w67r
             int posX, posY;
             glfwGetWindowPos(window, &posX, &posY);
             updateSizeData();
-            glfwSetWindowMonitor(window, monitor.getMonitorPointer(), posX, posY, _width, _height, refreshRate);
+            glfwSetWindowMonitor(window, monitor.getMonitorPointer(), posX, posY, _width, _height, _refreshRate);
         }
     }
 

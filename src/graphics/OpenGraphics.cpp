@@ -73,6 +73,7 @@ namespace w67r
     void OpenGraphics::setTransparency(bool transparency)
     {
         if (transparency != isTransparency())
+        {
             if (transparency)
             {
                 glEnable(GL_BLEND);
@@ -80,6 +81,7 @@ namespace w67r
             }
             else
                 glDisable(GL_BLEND);
+        }
     }
 
     bool OpenGraphics::isTransparency()
@@ -90,12 +92,14 @@ namespace w67r
     void OpenGraphics::setTexture2DOn(bool useTexture2D)
     {
         if (useTexture2D != isTexture2D())
+        {
             if (useTexture2D)
             {
                 glEnable(GL_TEXTURE_2D);
             }
             else
                 glDisable(GL_TEXTURE_2D);
+        }
     }
 
     bool OpenGraphics::isTexture2D()
@@ -103,7 +107,7 @@ namespace w67r
         return glIsEnabled(GL_TEXTURE_2D);
     }
 
-    float toFloatColor(short255 color)
+    float toFloatColor(uint8_t color)
     {
         return static_cast<float>(color / 255.0);
     }

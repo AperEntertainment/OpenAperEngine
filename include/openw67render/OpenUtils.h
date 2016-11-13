@@ -26,8 +26,6 @@
 extern "C" {
 #endif // For C++
 
-typedef unsigned char short255;
-
 #define DRAW_TYPE_QUADS GL_QUADS
 #define DRAW_TYPE_LINES GL_LINES
 
