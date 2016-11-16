@@ -17,6 +17,7 @@
  * along with Openw67Render.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "../../include/openw67render/input/ControllerManager.h"
+#include <string>
 #include <stdexcept>
 #include <algorithm>
 

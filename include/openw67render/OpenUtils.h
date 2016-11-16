@@ -20,6 +20,7 @@
 #ifndef OPENW67RENDER_OPENUTILS_H
 #define OPENW67RENDER_OPENUTILS_H
 
+#include <stdint.h>
 #include <GL/glew.h>
 
 #ifdef __cplusplus

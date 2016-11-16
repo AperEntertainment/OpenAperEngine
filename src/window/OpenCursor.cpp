@@ -17,6 +17,7 @@
  * along with Openw67Render.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <string>
 #include <stdexcept>
 #include "../../include/openw67render/window/OpenCursor.h"
 

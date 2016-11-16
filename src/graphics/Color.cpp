@@ -17,7 +17,6 @@
  * along with Openw67Render.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <bits/stl_algobase.h>
 #include "../../include/openw67render/graphics/Color.h"
 
 namespace w67r
@@ -49,7 +48,8 @@ namespace w67r
 
     Color Color::ligther()
     {
-        uint8_t i = static_cast<uint8_t>(1.0 / (1.0 - 0.7));
+        // 1.0 - 0.7 = 0.3
+        uint8_t i = static_cast<uint8_t>(1.0 / 0.3);
         uint8_t lblue = _blue;
         uint8_t lgreen = _green;
         uint8_t lred = _red;
@@ -65,16 +65,25 @@ namespace w67r
         if (_blue > 0 && _blue < i)
             lblue = i;
 
-        return Color(static_cast<uint8_t>(std::max(static_cast<int> (lred * 0.7), 0)),
-                     static_cast<uint8_t>(std::max(static_cast<int> (lgreen * 0.7), 0)),
-                     static_cast<uint8_t>(std::max(static_cast<int> (lblue * 0.7), 0)), _alpha);
+        lred = static_cast<uint8_t>(lred * 0.7);
+        lgreen = static_cast<uint8_t>(lgreen * 0.7);
+        lblue = static_cast<uint8_t>(lblue * 0.7);
+
+        return Color(static_cast<uint8_t>(lred < 255 ? 255 : lred), static_cast<uint8_t>(lgreen < 255 ? 255 : lgreen),
+                     static_cast<uint8_t>(lblue < 255 ? 255 : lblue), _alpha);
     }
+
+    template<typename S>
+        inline const S &min(const S &a, const S &b)
+        {
+            return b < a ? b : a;
+        }
 
     Color Color::darker()
     {
-        return Color(static_cast<uint8_t>(std::min(static_cast<int>(_red / 0.7), 0)),
-                     static_cast<uint8_t>(std::min(static_cast<int>(_green / 0.7), 0)),
-                     static_cast<uint8_t>(std::min(static_cast<int>(_blue / 0.7), 0)), _alpha);
+        return Color(static_cast<uint8_t>(min(static_cast<int>(_red / 0.7), 0)),
+                     static_cast<uint8_t>(min(static_cast<int>(_green / 0.7), 0)),
+                     static_cast<uint8_t>(min(static_cast<int>(_blue / 0.7), 0)), _alpha);
     }
 
     const Color Color::BLACK{0, 0, 0};
