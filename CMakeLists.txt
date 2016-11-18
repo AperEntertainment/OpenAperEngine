@@ -3,6 +3,8 @@ project(openw67render)
 
 # Add local find scripts to CMAKE path.
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
+set(ENV{GLFW_DIR} dependencies/glfw)
+set(GLFW_INCLUDE_DIR dependencies/glfw/include)
 
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Ofast -march=native -mtune=native -ffast-math -D__extern_always_inline=\"extern __always_inline\"")
@@ -12,9 +14,12 @@ endif()
 
 find_package(GLEW REQUIRED)
 
-add_subdirectory(dependencies/glfw)
-include_directories(dependencies/glfw/include)
+add_subdirectory($ENV{GLFW_DIR})
+include_directories(${GLFW_INCLUDE_DIR})
 include_directories(${GLEW_INCLUDE_DIR})
+
+add_subdirectory(dependencies/glbinding)
+include_directories(dependencies/glbinding/source/glbinding/include)
 
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
@@ -41,4 +46,4 @@ add_library(openw67render ${HEADERS} ${SOURCES})
 set_property(TARGET openw67render PROPERTY CXX_STANDARD_REQUIRED ON)
 set_property(TARGET openw67render PROPERTY CXX_STANDARD 11)
 
-target_link_libraries(openw67render glfw ${GLEW_LIBRARY} ${GLFW_LIBRARIES})
+target_link_libraries(openw67render glbinding glfw ${GLEW_LIBRARY} ${GLFW_LIBRARIES})

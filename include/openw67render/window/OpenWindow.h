@@ -20,7 +20,6 @@
 #ifndef OPENW67RENDER_OPENWINDOW_H
 #define OPENW67RENDER_OPENWINDOW_H
 
-#include <GLFW/glfw3.h>
 #include "OpenMonitor.h"
 
 namespace w67r

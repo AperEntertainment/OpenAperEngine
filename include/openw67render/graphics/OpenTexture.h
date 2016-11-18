@@ -20,22 +20,22 @@
 #ifndef OPENW67RENDER_OPENIMAGE_H
 #define OPENW67RENDER_OPENIMAGE_H
 
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
 #include "../OpenUtils.h"
 #include <string>
 
+using namespace gl;
+
 enum TextureWrapMode
 {
-    CLAMP = GL_CLAMP,
+    CLAMP = static_cast<std::underlying_type<GLenum>::type>(GLenum::GL_CLAMP),
     CLAMP_TO_EDGE = GL_CLAMP_TO_EDGE,
-    REPEAT = GL_REPEAT
+    REPEAT = static_cast<std::underlying_type<GLenum>::type>(GLenum::GL_REPEAT)
 };
 
 enum TextureFilterMode
 {
-    LINEAR = GL_LINEAR,
-    NEAREST = GL_NEAREST
+    LINEAR = static_cast<std::underlying_type<GLenum>::type>(GLenum::GL_LINEAR),
+    NEAREST = static_cast<std::underlying_type<GLenum>::type>(GLenum::GL_NEAREST)
 };
 
 typedef enum TextureWrapMode TextureWrapMode;

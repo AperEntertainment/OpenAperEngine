@@ -21,6 +21,7 @@
 #define OPENW67RENDER_OPENMONITOR_H
 
 #include <string>
+#define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
 
 namespace w67r

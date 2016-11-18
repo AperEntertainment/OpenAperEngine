@@ -21,7 +21,7 @@
 #define OPENW67RENDER_OPENUTILS_H
 
 #include <stdint.h>
-#include <GL/glew.h>
+#include <glbinding/gl/gl.h>
 
 #ifdef __cplusplus
 extern "C" {

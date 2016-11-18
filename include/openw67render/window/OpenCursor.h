@@ -20,7 +20,7 @@
 #ifndef OPENW67RENDER_OPENCURSOR_H
 #define OPENW67RENDER_OPENCURSOR_H
 
-#include <GL/glew.h>
+#define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
 
 namespace w67r

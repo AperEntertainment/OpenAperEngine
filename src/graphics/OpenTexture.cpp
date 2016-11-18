@@ -81,7 +81,7 @@ TextureFilterMode OpenTexture::getFilterMode() const
 
 void OpenTexture::bind()
 {
-    glActiveTexture(_id);
+    glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, _id);
 }
 

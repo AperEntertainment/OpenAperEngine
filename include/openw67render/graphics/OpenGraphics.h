@@ -20,6 +20,7 @@
 #ifndef OPENW67RENDER_OPENGRAPHICS_H
 #define OPENW67RENDER_OPENGRAPHICS_H
 
+#include "../OpenUtils.h"
 #include "OpenTexture.h"
 #include "../window/OpenWindow.h"
 #include "Color.h"
@@ -110,7 +111,7 @@ namespace w67r
          */
         bool isTexture2D();
 
-        void beginDraw(unsigned int drawType);
+        void beginDraw(GLenum drawType);
 
         void endDraw();
 

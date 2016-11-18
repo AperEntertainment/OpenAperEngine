@@ -528,3 +528,4 @@ luac.out
 # Dependencies
 
 include/stb
+cmake/FindGLFW.cmake

@@ -18,11 +18,17 @@
  */
 
 #include "../../include/openw67render/graphics/OpenGraphics.h"
-#include <stdexcept>
 #include <iostream>
 
 namespace w67r
 {
+    using namespace gl;
+
+    bool glBooleanToBool(GLboolean val)
+    {
+        return val == GL_TRUE;
+    }
+
     OpenGraphics::OpenGraphics(float complementX, float complementY) : _complementX(complementX),
                                                                        _complementY(complementY)
     {
@@ -86,7 +92,7 @@ namespace w67r
 
     bool OpenGraphics::isTransparency()
     {
-        return glIsEnabled(GL_BLEND);
+        return glBooleanToBool(glIsEnabled(GL_BLEND));
     }
 
     void OpenGraphics::setTexture2DOn(bool useTexture2D)
@@ -104,7 +110,7 @@ namespace w67r
 
     bool OpenGraphics::isTexture2D()
     {
-        return glIsEnabled(GL_TEXTURE_2D);
+        return glBooleanToBool(glIsEnabled(GL_TEXTURE_2D));
     }
 
     float toFloatColor(uint8_t color)
@@ -119,7 +125,7 @@ namespace w67r
                   toFloatColor(color.alpha()));
     }
 
-    void OpenGraphics::beginDraw(unsigned int drawType)
+    void OpenGraphics::beginDraw(GLenum drawType)
     {
         if (drawing)
             throw std::runtime_error("Already drawing an object.");
