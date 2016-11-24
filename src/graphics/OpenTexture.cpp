@@ -17,22 +17,20 @@
  * along with Openw67Render.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#define STB_IMAGE_IMPLEMENTATION
-
-#include "../../include/stb/stb_image.h"
+#include <SOIL/SOIL.h>
 
 #include "../../include/openw67render/graphics/OpenTexture.h"
 
 /* OpenTexture implementation */
 
-OpenTexture::OpenTexture(uint8_t data[], unsigned int width, unsigned int height, TextureWrapMode wrapMode,
+OpenTexture::OpenTexture(unsigned char data[], unsigned int width, unsigned int height, TextureWrapMode wrapMode,
                          TextureFilterMode filterMode) : _width(width), _height(height), textureWrapMode(wrapMode),
                                                          textureFilterMode(filterMode)
 {
     init(data);
 }
 
-void OpenTexture::init(uint8_t data[])
+void OpenTexture::init(unsigned char data[])
 {
     GLuint tempId;
     glGenTextures(1, &tempId);
@@ -81,7 +79,7 @@ TextureFilterMode OpenTexture::getFilterMode() const
 
 void OpenTexture::bind()
 {
-    glActiveTexture(GL_TEXTURE0);
+    glActiveTexture(GL_TEXTURE1);
     glBindTexture(GL_TEXTURE_2D, _id);
 }
 
@@ -147,12 +145,12 @@ const OpenTextureRegion OpenTextureRegion::BASE{0.0, 0.0, 1.0, 1.0};
 
 /* Load and create implementation */
 
-OpenTexture createTexture(uint8_t image[], unsigned int width, unsigned int height)
+OpenTexture createTexture(unsigned char image[], unsigned int width, unsigned int height)
 {
     return createTexture(image, width, height, TextureWrapMode::CLAMP, TextureFilterMode::NEAREST);
 }
 
-OpenTexture createTexture(uint8_t image[], unsigned int width, unsigned int height, TextureWrapMode wrapMode,
+OpenTexture createTexture(unsigned char image[], unsigned int width, unsigned int height, TextureWrapMode wrapMode,
                           TextureFilterMode filterMode)
 {
     return OpenTexture(image, width, height, wrapMode, filterMode);
@@ -167,16 +165,15 @@ OpenTexture loadTexture(std::string path, TextureWrapMode wrapMode, TextureFilte
 {
     int width;
     int height;
-    int comp;
+    int channels;
     // Load image
-    stbi_set_flip_vertically_on_load(1);
-    uint8_t *data = stbi_load(path.c_str(), &width, &height, &comp, STBI_rgb_alpha);
-    if (data == nullptr)
-        throw (std::string("Failed to load texture").append(LINE_SEPARATOR).append(stbi_failure_reason()));
+    auto *data = SOIL_load_image(path.c_str(), &width, &height, &channels, SOIL_LOAD_AUTO);
+    if (!data)
+        throw (std::string("Failed to load texture").append(LINE_SEPARATOR).append(SOIL_last_result()));
 
     OpenTexture texture = createTexture(data, static_cast<unsigned int>(width), static_cast<unsigned int>(height),
                                         wrapMode, filterMode);
-    stbi_image_free(data);
+    SOIL_free_image_data(data);
     return texture;
 }
 

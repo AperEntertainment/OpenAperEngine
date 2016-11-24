@@ -21,6 +21,9 @@ include_directories(${GLEW_INCLUDE_DIR})
 add_subdirectory(dependencies/glbinding)
 include_directories(dependencies/glbinding/source/glbinding/include)
 
+add_subdirectory(dependencies/SOIL)
+include_directories(dependencies/SOIL/inc)
+
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
@@ -30,9 +33,7 @@ set(INPUT_HEADERS include/openw67render/input/Controller.h include/openw67render
 set(WINDOW_HEADERS include/openw67render/window/OpenCursor.h include/openw67render/window/OpenMonitor.h include/openw67render/window/OpenWindow.h)
 set(BASE_HEADERS include/openw67render/OpenUtils.h include/openw67render/OpenContext.h)
 
-set(STB_HEADERS include/stb/stb_image.h)
-
-set(HEADERS ${STB_HEADERS} ${GRAPHICS_HEADERS} ${INPUT_HEADERS} ${WINDOW_HEADERS} ${BASE_HEADERS})
+set(HEADERS ${GRAPHICS_HEADERS} ${INPUT_HEADERS} ${WINDOW_HEADERS} ${BASE_HEADERS})
 
 set(GRAPHICS_SOURCES src/graphics/Color.cpp src/graphics/OpenGraphics.cpp src/graphics/OpenTexture.cpp)
 set(INPUT_SOURCES src/input/Controller.cpp src/input/ControllerManager.cpp)
@@ -46,4 +47,4 @@ add_library(openw67render ${HEADERS} ${SOURCES})
 set_property(TARGET openw67render PROPERTY CXX_STANDARD_REQUIRED ON)
 set_property(TARGET openw67render PROPERTY CXX_STANDARD 11)
 
-target_link_libraries(openw67render glbinding glfw ${GLEW_LIBRARY} ${GLFW_LIBRARIES})
+target_link_libraries(openw67render glbinding glfw soil ${GLEW_LIBRARY} ${GLFW_LIBRARIES})

@@ -19,8 +19,12 @@
 #ifndef OPENW67RENDER_OPENCONTEXT_H
 #define OPENW67RENDER_OPENCONTEXT_H
 
+#include <string>
+
 namespace w67r
 {
+    using namespace std;
+
     class Runnable
     {
     public:
@@ -36,7 +40,7 @@ namespace w67r
          *
          * This function represents the initialization error callback.
          */
-        virtual void initError() = 0;
+        virtual void initError(string error) = 0;
 
         /*!
          *  This function is your initialization function.

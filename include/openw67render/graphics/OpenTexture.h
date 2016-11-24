@@ -49,14 +49,14 @@ protected:
     const unsigned int _height;
     unsigned int _id;
 
-    void init(uint8_t data[]);
+    void init(unsigned char data[]);
 
 private:
     const TextureWrapMode textureWrapMode;
     const TextureFilterMode textureFilterMode;
 
 public:
-    OpenTexture(uint8_t data[], unsigned int width, unsigned int height, TextureWrapMode wrapMode,
+    OpenTexture(unsigned char data[], unsigned int width, unsigned int height, TextureWrapMode wrapMode,
                 TextureFilterMode filterMode);
 
     ~OpenTexture();
@@ -216,9 +216,9 @@ public:
     const static OpenTextureRegion BASE;
 };
 
-OpenTexture createTexture(uint8_t image[], unsigned int width, unsigned int height);
+OpenTexture createTexture(unsigned char image[], unsigned int width, unsigned int height);
 
-OpenTexture createTexture(uint8_t image[], unsigned int width, unsigned int height, TextureWrapMode wrapMode,
+OpenTexture createTexture(unsigned char image[], unsigned int width, unsigned int height, TextureWrapMode wrapMode,
                           TextureFilterMode filterMode);
 
 OpenTexture loadTexture(std::string path);

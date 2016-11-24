@@ -4,3 +4,6 @@
 [submodule "dependencies/glbinding"]
 	path = dependencies/glbinding
 	url = https://github.com/cginternals/glbinding.git
+[submodule "dependencies/SOIL"]
+	path = dependencies/SOIL
+	url = https://github.com/paralin/soil.git

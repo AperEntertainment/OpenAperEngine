@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/w67clement/cppw67render.svg?branch=master)](https://travis-ci.org/w67clement/cppw67render)
 
-A graphical library using **GLFW** and **OpenGL** written in **C++**.
+A graphical library using **GLFW** and **OpenGL (glbinding)** written in **C++**.
 
 ## Setting up
 
@@ -47,6 +47,7 @@ Without Git, it's a little harder:
 
 - Download sources of Openw67Render and put them in dependencies/openw67render
 - Download sources of GLFW and put them in dependencies/openw67render/dependencies/glfw
+- Download sources of glbinding and put them in dependencies/openw67render/dependencies/glbinding
 - Run get_dependencies.sh in dependencies/openw67render
 
 #### Setting up CMake
@@ -54,21 +55,15 @@ Without Git, it's a little harder:
 At first, add the line
 ```cmake
 find_package(OpenGL REQUIRED)
-```
-After project flag.
 
-Then add this:
-
-```cmake
 add_subdirectory(dependencies/openw67render)
 include_directories(dependencies/openw67render/include)
-include_directories(dependencies/openw67render/dependencies/glfw/include)
 include_directories(${OPENGL_INCLUDE_DIR})
 ```
 
 Finally add this at the end:
 ```cmake
-target_link_libraries(yourProjectName openw67render glfw ${GL_LIB} ${GLFW_LIBRARIES} ${OPENGL_gl_LIBRARY})
+target_link_libraries(yourProjectName openw67render glfw glbinding ${GL_LIB} ${GLFW_LIBRARIES} ${OPENGL_gl_LIBRARY})
 ```
 
 And... Congratulations ! You have set up Openw67Render for your project !

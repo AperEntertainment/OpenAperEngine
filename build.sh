@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # Dependencies
-sh get_stb.sh
 # Check compiler
 #if [ -z ${CXX+x} ];
 #then

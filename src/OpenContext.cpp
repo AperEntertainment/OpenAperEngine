@@ -16,6 +16,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with Openw67Render.  If not, see <http://www.gnu.org/licenses/>.
  */
+#include <glbinding/Binding.h>
 #include "../include/openw67render/input/ControllerManager.h"
 #include "../include/openw67render/OpenContext.h"
 
@@ -29,7 +30,7 @@ namespace w67r
     {
         if (!glfwInit())
         {
-            _runnable->initError();
+            _runnable->initError("GLFW cannot be initialized.");
             return;
         }
         glfwSetErrorCallback(_runnable->glfwErrorCallback());
