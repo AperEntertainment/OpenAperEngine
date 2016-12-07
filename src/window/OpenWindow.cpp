@@ -172,4 +172,9 @@ namespace w67r
         }
         return _monitor;
     }
+
+    OpenWindow::OpenWindow(void *pVoid)
+    {
+
+    }
 }

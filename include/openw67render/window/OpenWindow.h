@@ -145,6 +145,8 @@ namespace w67r
         void setMonitor(OpenMonitor monitor);
 
         OpenMonitor getMonitor();
+
+        OpenWindow(void *pVoid);
     };
 
     inline const char *OpenWindow::getTitle()

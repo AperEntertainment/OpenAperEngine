@@ -47,5 +47,6 @@ namespace w67r
     void Context::glInit()
     {
         glbinding::Binding::initialize();
+        _runnable->glInit();
     }
 }

@@ -48,7 +48,7 @@ namespace w67r
          */
         virtual void init() = 0;
 
-        virtual OpenWindow *createWindow() = 0;
+        virtual OpenWindow createWindow() = 0;
 
         virtual void glInit() = 0;
     };
@@ -57,7 +57,7 @@ namespace w67r
     {
     private:
         Runnable *_runnable;
-        OpenWindow *mainWindow;
+        OpenWindow mainWindow;
     public:
         Context(Runnable *runnable);
 
