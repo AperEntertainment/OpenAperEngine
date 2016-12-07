@@ -47,4 +47,4 @@ add_library(openw67render ${HEADERS} ${SOURCES})
 set_property(TARGET openw67render PROPERTY CXX_STANDARD_REQUIRED ON)
 set_property(TARGET openw67render PROPERTY CXX_STANDARD 11)
 
-target_link_libraries(openw67render glbinding glfw soil${GLEW_LIBRARY} ${GLFW_LIBRARIES})
+target_link_libraries(openw67render glbinding glfw soil ${GLEW_LIBRARY} ${GLFW_LIBRARIES})

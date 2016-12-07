@@ -48,8 +48,6 @@ namespace w67r
          */
         virtual void init() = 0;
 
-        virtual OpenWindow createWindow() = 0;
-
         virtual void glInit() = 0;
     };
 
@@ -57,7 +55,6 @@ namespace w67r
     {
     private:
         Runnable *_runnable;
-        OpenWindow mainWindow;
     public:
         Context(Runnable *runnable);
 
@@ -66,8 +63,6 @@ namespace w67r
          * This function represents the initialization function of the program.
          */
         void init();
-
-        void createWindow();
 
         void glInit();
     };

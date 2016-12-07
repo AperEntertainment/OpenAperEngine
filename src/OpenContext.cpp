@@ -23,7 +23,7 @@
 
 namespace w67r
 {
-    Context::Context(Runnable *runnable) : _runnable(runnable), mainWindow(nullptr)
+    Context::Context(Runnable *runnable) : _runnable(runnable)
     {
     }
 
@@ -37,11 +37,6 @@ namespace w67r
         glfwSetErrorCallback(_runnable->glfwErrorCallback());
         Controllers::CONTROLLER_MANAGER.init();
         _runnable->init();
-    }
-
-    void Context::createWindow()
-    {
-        mainWindow = _runnable->createWindow();
     }
 
     void Context::glInit()
