@@ -42,83 +42,23 @@ typedef enum TextureWrapMode TextureWrapMode;
 
 typedef enum TextureFilterMode TextureFilterMode;
 
-class OpenTexture
+struct OpenTexture
 {
-protected:
-    const unsigned int _width;
-    const unsigned int _height;
-    unsigned int _id;
-
-    void init(unsigned char data[]);
-
-private:
-    const TextureWrapMode textureWrapMode;
-    const TextureFilterMode textureFilterMode;
-
-public:
-    OpenTexture(unsigned char data[], unsigned int width, unsigned int height, TextureWrapMode wrapMode,
-                TextureFilterMode filterMode);
-
-    ~OpenTexture();
-
-    /*! @brief Gets the ID of the texture.
-     *
-     * This function returns the generated ID of the texture.
-     *
-     * @return ID of the texture.
-     */
-    unsigned int id() const;
-
-    /*! @brief Gets the width of the texture.
-     *
-     * This function returns the width of the texture.
-     *
-     * @return Width of the texture.
-     */
-    unsigned int width() const;
-
-    /*! @brief Gets the height of the texture.
-     *
-     * This function returns the height of the texture.
-     *
-     * @return Height of the texture.
-     */
-    unsigned int height() const;
-
-    /*! @brief Gets the wrap mode of the texture.
-     *
-     * This function returns the wrap mode of the texture.
-     *
-     * @return Wrap mode of the texture.
-     */
-    TextureWrapMode getWrapMode() const;
-
-    /*! @brief Gets the filter mode of the texture.
-     *
-     * This function returns the filter mode of the texture.
-     *
-     * @return Filter mode of the texture.
-     */
-    TextureFilterMode getFilterMode() const;
-
-    /*! @brief Binds the texture.
-     *
-     * This function binds the texture for an OpenGL use.
-     */
-    void bind();
-
-    /*! @brief Unbinds the texture.
-     *
-     * This function unbinds the texture for an OpenGL use.
-     */
-    void unbind();
-
-    /*! @brief Deletes the texture.
-     *
-     * This function deletes the texture with OpenGL.
-     */
-    void deleteTexture();
+    unsigned int id;
+    int width;
+    int height;
+    int channels;
 };
+
+/*              OPENGL TEXTURE CALLS                */
+
+void bindTexture(OpenTexture *texture);
+
+void unbindTexture();
+
+void deleteTexture(OpenTexture *texture);
+
+/*              OPENTEXTUREREGION                */
 
 class OpenTextureRegion
 {
@@ -216,10 +156,10 @@ public:
     const static OpenTextureRegion BASE;
 };
 
-OpenTexture createTexture(unsigned char image[], unsigned int width, unsigned int height);
+OpenTexture createTexture(unsigned char image[], unsigned int width, unsigned int height, unsigned int channels);
 
-OpenTexture createTexture(unsigned char image[], unsigned int width, unsigned int height, TextureWrapMode wrapMode,
-                          TextureFilterMode filterMode);
+OpenTexture createTexture(unsigned char image[], unsigned int width, unsigned int height, unsigned int channels,
+                          TextureWrapMode wrapMode, TextureFilterMode filterMode);
 
 OpenTexture loadTexture(std::string path);
 

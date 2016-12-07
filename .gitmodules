@@ -7,3 +7,6 @@
 [submodule "dependencies/SOIL"]
 	path = dependencies/SOIL
 	url = https://github.com/paralin/soil.git
+[submodule "dependencies/DevIL"]
+	path = dependencies/DevIL
+	url = https://github.com/DentonW/DevIL

@@ -21,80 +21,27 @@
 
 #include "../../include/openw67render/graphics/OpenTexture.h"
 
-/* OpenTexture implementation */
+using namespace std;
 
-OpenTexture::OpenTexture(unsigned char data[], unsigned int width, unsigned int height, TextureWrapMode wrapMode,
-                         TextureFilterMode filterMode) : _width(width), _height(height), textureWrapMode(wrapMode),
-                                                         textureFilterMode(filterMode)
+/*              OPENGL TEXTURE CALLS                */
+
+void bindTexture(OpenTexture *texture)
 {
-    init(data);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, texture->id);
 }
 
-void OpenTexture::init(unsigned char data[])
-{
-    GLuint tempId;
-    glGenTextures(1, &tempId);
-    _id = tempId;
-
-    glBindTexture(GL_TEXTURE_2D, _id);
-
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, textureWrapMode);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, textureFilterMode);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, textureFilterMode);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, textureFilterMode);
-
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, _width, _height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
-}
-
-void OpenTexture::deleteTexture()
-{
-    const GLuint tempId(_id);
-    glDeleteTextures(1, &tempId);
-}
-
-unsigned int OpenTexture::id() const
-{
-    return _id;
-}
-
-unsigned int OpenTexture::width() const
-{
-    return _width;
-}
-
-unsigned int OpenTexture::height() const
-{
-    return _height;
-}
-
-TextureWrapMode OpenTexture::getWrapMode() const
-{
-    return textureWrapMode;
-}
-
-TextureFilterMode OpenTexture::getFilterMode() const
-{
-    return textureFilterMode;
-}
-
-void OpenTexture::bind()
-{
-    glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_2D, _id);
-}
-
-void OpenTexture::unbind()
+void unbindTexture()
 {
     glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-OpenTexture::~OpenTexture()
+void deleteTexture(OpenTexture *texture)
 {
-    if (_id != 0)
-        deleteTexture();
+    glDeleteTextures(1, &texture->id);
 }
 
-/* OpenTextureRegion implementation */
+/*              OPENTEXTUREREGION                */
 
 OpenTextureRegion::OpenTextureRegion(float minX, float minY, float maxX, float maxY) : _minX(minX), _minY(minY),
                                                                                        _maxX(maxX), _maxY(maxY)
@@ -118,7 +65,7 @@ float OpenTextureRegion::maxX() const
 
 float OpenTextureRegion::maxY() const
 {
-    return _minY;
+    return _maxY;
 }
 
 void OpenTextureRegion::minX(float minX)
@@ -145,35 +92,58 @@ const OpenTextureRegion OpenTextureRegion::BASE{0.0, 0.0, 1.0, 1.0};
 
 /* Load and create implementation */
 
-OpenTexture createTexture(unsigned char image[], unsigned int width, unsigned int height)
+OpenTexture createTexture(unsigned char *image, unsigned int width, unsigned int height, unsigned int channels)
 {
-    return createTexture(image, width, height, TextureWrapMode::CLAMP, TextureFilterMode::NEAREST);
+    return createTexture(image, width, height, channels, TextureWrapMode::CLAMP, TextureFilterMode::NEAREST);
 }
 
-OpenTexture createTexture(unsigned char image[], unsigned int width, unsigned int height, TextureWrapMode wrapMode,
-                          TextureFilterMode filterMode)
+OpenTexture createTexture(unsigned char *image, unsigned int width, unsigned int height, unsigned int channels,
+                          TextureWrapMode wrapMode, TextureFilterMode filterMode)
 {
-    return OpenTexture(image, width, height, wrapMode, filterMode);
+    OpenTexture texture = OpenTexture();
+    texture.width = width;
+    texture.height = height;
+    texture.channels = channels;
+    texture.id = SOIL_create_OGL_texture(image, width, height, channels, SOIL_CREATE_NEW_ID, 0);
+    if (!texture.id)
+        throw (string("Failed to load texture").append(LINE_SEPARATOR).append(SOIL_last_result()));
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrapMode);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wrapMode);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, filterMode);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, filterMode);
+
+    return texture;
 }
 
-OpenTexture loadTexture(std::string path)
+OpenTexture loadTexture(string path)
 {
     return loadTexture(path, TextureWrapMode::CLAMP, TextureFilterMode::NEAREST);
 }
 
-OpenTexture loadTexture(std::string path, TextureWrapMode wrapMode, TextureFilterMode filterMode)
+OpenTexture loadTexture(string path, TextureWrapMode wrapMode, TextureFilterMode filterMode)
 {
-    int width;
-    int height;
-    int channels;
-    // Load image
-    auto *data = SOIL_load_image(path.c_str(), &width, &height, &channels, SOIL_LOAD_AUTO);
-    if (!data)
-        throw (std::string("Failed to load texture").append(LINE_SEPARATOR).append(SOIL_last_result()));
+    OpenTexture texture = OpenTexture();
+    int width, height;
 
-    OpenTexture texture = createTexture(data, static_cast<unsigned int>(width), static_cast<unsigned int>(height),
-                                        wrapMode, filterMode);
-    SOIL_free_image_data(data);
+    texture.id = SOIL_load_OGL_texture(path.c_str(), 4, SOIL_CREATE_NEW_ID, 0);
+
+    glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &width);
+    glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &height);
+    if (!texture.id)
+        throw (string("Failed to load texture").append(LINE_SEPARATOR).append(SOIL_last_result()));
+
+    texture.width = width;
+    texture.height = height;
+    texture.channels = 4;
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrapMode);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wrapMode);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, filterMode);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, filterMode);
+
+    unbindTexture();
+
     return texture;
 }
 

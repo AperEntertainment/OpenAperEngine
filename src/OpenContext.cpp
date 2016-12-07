@@ -17,12 +17,13 @@
  * along with Openw67Render.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include <glbinding/Binding.h>
+
 #include "../include/openw67render/input/ControllerManager.h"
 #include "../include/openw67render/OpenContext.h"
 
 namespace w67r
 {
-    Context::Context(Runnable *runnable) : _runnable(runnable)
+    Context::Context(Runnable *runnable) : _runnable(runnable), mainWindow(nullptr)
     {
     }
 
@@ -36,5 +37,15 @@ namespace w67r
         glfwSetErrorCallback(_runnable->glfwErrorCallback());
         Controllers::CONTROLLER_MANAGER.init();
         _runnable->init();
+    }
+
+    void Context::createWindow()
+    {
+        mainWindow = _runnable->createWindow();
+    }
+
+    void Context::glInit()
+    {
+        glbinding::Binding::initialize();
     }
 }

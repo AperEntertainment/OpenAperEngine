@@ -3,7 +3,7 @@ project(openw67render)
 
 # Add local find scripts to CMAKE path.
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
-set(ENV{GLFW_DIR} dependencies/glfw)
+set(GLFW_DIR dependencies/glfw)
 set(GLFW_INCLUDE_DIR dependencies/glfw/include)
 
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
@@ -14,7 +14,7 @@ endif()
 
 find_package(GLEW REQUIRED)
 
-add_subdirectory($ENV{GLFW_DIR})
+add_subdirectory(${GLFW_DIR})
 include_directories(${GLFW_INCLUDE_DIR})
 include_directories(${GLEW_INCLUDE_DIR})
 
@@ -47,4 +47,4 @@ add_library(openw67render ${HEADERS} ${SOURCES})
 set_property(TARGET openw67render PROPERTY CXX_STANDARD_REQUIRED ON)
 set_property(TARGET openw67render PROPERTY CXX_STANDARD 11)
 
-target_link_libraries(openw67render glbinding glfw soil ${GLEW_LIBRARY} ${GLFW_LIBRARIES})
+target_link_libraries(openw67render glbinding glfw soil${GLEW_LIBRARY} ${GLFW_LIBRARIES})

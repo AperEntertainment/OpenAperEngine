@@ -20,6 +20,7 @@
 #define OPENW67RENDER_OPENCONTEXT_H
 
 #include <string>
+#include "window/OpenWindow.h"
 
 namespace w67r
 {
@@ -46,12 +47,17 @@ namespace w67r
          *  This function is your initialization function.
          */
         virtual void init() = 0;
+
+        virtual OpenWindow *createWindow() = 0;
+
+        virtual void glInit() = 0;
     };
 
     class Context
     {
     private:
         Runnable *_runnable;
+        OpenWindow *mainWindow;
     public:
         Context(Runnable *runnable);
 
@@ -60,6 +66,10 @@ namespace w67r
          * This function represents the initialization function of the program.
          */
         void init();
+
+        void createWindow();
+
+        void glInit();
     };
 }
 

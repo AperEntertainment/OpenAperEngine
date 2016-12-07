@@ -140,7 +140,7 @@ namespace w67r
          * @param width Width of the image.
          * @param height Height of the image.
          */
-        void drawImage(OpenTexture texture, float x, float y, float width, float height);
+        void drawImage(OpenTexture *texture, float x, float y, float width, float height);
 
         /*! @brief Draws an 2D image with a defined part texture.
          *
@@ -153,7 +153,7 @@ namespace w67r
          * @param height Height of the image.
          * @param region Part of the texture to draw.
          */
-        void drawImage(OpenTexture texture, float x, float y, float width, float height, OpenTextureRegion region);
+        void drawImage(OpenTexture *texture, float x, float y, float width, float height, OpenTextureRegion region);
     };
 
     /**

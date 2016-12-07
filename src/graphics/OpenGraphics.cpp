@@ -113,16 +113,10 @@ namespace w67r
         return glBooleanToBool(glIsEnabled(GL_TEXTURE_2D));
     }
 
-    float toFloatColor(uint8_t color)
-    {
-        return static_cast<float>(color / 255.0);
-    }
-
     void OpenGraphics::setColor(Color color)
     {
         // Call glColor.
-        glColor4f(toFloatColor(color.red()), toFloatColor(color.green()), toFloatColor(color.blue()),
-                  toFloatColor(color.alpha()));
+        glColor4ub(color.red(), color.green(), color.blue(), color.alpha());
     }
 
     void OpenGraphics::beginDraw(GLenum drawType)
@@ -168,18 +162,18 @@ namespace w67r
         endDraw();
     }
 
-    void OpenGraphics::drawImage(OpenTexture texture, float x, float y, float width, float height)
+    void OpenGraphics::drawImage(OpenTexture *texture, float x, float y, float width, float height)
     {
         drawImage(texture, x, y, width, height, OpenTextureRegion::BASE);
     }
 
     void
-    OpenGraphics::drawImage(OpenTexture texture, float x, float y, float width, float height, OpenTextureRegion region)
+    OpenGraphics::drawImage(OpenTexture *texture, float x, float y, float width, float height, OpenTextureRegion region)
     {
         x = x + _complementX;
         y = y + _complementY;
 
-        texture.bind();
+        bindTexture(texture);
         beginDraw(DRAW_TYPE_QUADS);
         glTexCoord2f(region.minX(), region.minY());
         vertex2f(x, y + height);
@@ -190,7 +184,7 @@ namespace w67r
         glTexCoord2f(region.maxX(), region.minY());
         vertex2f(x + width, y + height);
         endDraw();
-        texture.unbind();
+        unbindTexture();
     }
 
     void setViewport(int x, int y, int width, int height)
