@@ -104,7 +104,7 @@ OpenTexture createTexture(unsigned char *image, unsigned int width, unsigned int
     texture.width = width;
     texture.height = height;
     texture.channels = channels;
-    texture.id = SOIL_create_OGL_texture(image, width, height, channels, SOIL_CREATE_NEW_ID, 0);
+    texture.id = SOIL_create_OGL_texture(image, width, height, channels, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
     if (!texture.id)
         throw (string("Failed to load texture").append(LINE_SEPARATOR).append(SOIL_last_result()));
 
@@ -126,7 +126,7 @@ OpenTexture loadTexture(string path, TextureWrapMode wrapMode, TextureFilterMode
     OpenTexture texture = OpenTexture();
     int width, height;
 
-    texture.id = SOIL_load_OGL_texture(path.c_str(), 4, SOIL_CREATE_NEW_ID, 0);
+    texture.id = SOIL_load_OGL_texture(path.c_str(), 4, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
 
     glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &width);
     glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &height);
