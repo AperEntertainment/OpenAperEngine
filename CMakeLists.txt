@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.1)
-project(openw67render)
+project(openaperrender)
 
 # Add local find scripts to CMAKE path.
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
@@ -21,17 +21,17 @@ include_directories(${GLEW_INCLUDE_DIR})
 add_subdirectory(dependencies/glbinding)
 include_directories(dependencies/glbinding/source/glbinding/include)
 
-add_subdirectory(dependencies/SOIL)
-include_directories(dependencies/SOIL/inc)
+add_subdirectory(dependencies/soil)
+include_directories(dependencies/soil/inc)
 
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 
-set(GRAPHICS_HEADERS include/openw67render/graphics/Color.h include/openw67render/graphics/OpenGraphics.h include/openw67render/graphics/OpenTexture.h)
-set(INPUT_HEADERS include/openw67render/input/Controller.h include/openw67render/input/ControllerManager.h)
-set(WINDOW_HEADERS include/openw67render/window/OpenCursor.h include/openw67render/window/OpenMonitor.h include/openw67render/window/OpenWindow.h)
-set(BASE_HEADERS include/openw67render/OpenUtils.h include/openw67render/OpenContext.h)
+set(GRAPHICS_HEADERS include/openaperrender/graphics/Color.h include/openaperrender/graphics/OpenGraphics.h include/openaperrender/graphics/OpenTexture.h)
+set(INPUT_HEADERS include/openaperrender/input/Controller.h include/openaperrender/input/ControllerManager.h)
+set(WINDOW_HEADERS include/openaperrender/window/OpenCursor.h include/openaperrender/window/OpenMonitor.h include/openaperrender/window/OpenWindow.h)
+set(BASE_HEADERS include/openaperrender/OpenUtils.h include/openaperrender/OpenContext.h)
 
 set(HEADERS ${GRAPHICS_HEADERS} ${INPUT_HEADERS} ${WINDOW_HEADERS} ${BASE_HEADERS})
 
@@ -42,9 +42,9 @@ set(BASE_SOURCES src/OpenContext.cpp)
 
 set(SOURCES ${GRAPHICS_SOURCES} ${INPUT_SOURCES} ${WINDOW_SOURCES} ${BASE_SOURCES})
 
-add_library(openw67render ${HEADERS} ${SOURCES})
+add_library(openaperrender ${HEADERS} ${SOURCES})
 
-set_property(TARGET openw67render PROPERTY CXX_STANDARD_REQUIRED ON)
-set_property(TARGET openw67render PROPERTY CXX_STANDARD 11)
+set_property(TARGET openaperrender PROPERTY CXX_STANDARD_REQUIRED ON)
+set_property(TARGET openaperrender PROPERTY CXX_STANDARD 11)
 
-target_link_libraries(openw67render glbinding glfw soil ${GLEW_LIBRARY} ${GLFW_LIBRARIES})
+target_link_libraries(openaperrender glbinding glfw soil ${GLEW_LIBRARY} ${GLFW_LIBRARIES})

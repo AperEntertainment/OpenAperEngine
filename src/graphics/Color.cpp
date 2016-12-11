@@ -1,25 +1,25 @@
 /*
  * Copyright © 2016 Clément "w67clement" Wagner
  *
- * This file is part of Openw67Render.
+ * This file is part of OpenAperRender.
  *
- * Openw67Render is free software: you can redistribute it and/or modify
+ * OpenAperRender is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Openw67Render is distributed in the hope that it will be useful,
+ * OpenAperRender is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public License
- * along with Openw67Render.  If not, see <http://www.gnu.org/licenses/>.
+ * along with OpenAperRender.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "../../include/openw67render/graphics/Color.h"
+#include "../../include/openaperrender/graphics/Color.h"
 
-namespace w67r
+namespace oar
 {
     Color::Color(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha) : _red(red), _green(green), _blue(blue),
                                                                             _alpha(alpha)
