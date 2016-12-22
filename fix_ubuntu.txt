@@ -1,0 +1,2 @@
+Issue: The RandR library and headers were not found
+Fix: Install the following packages from apt: "xorg-dev" and "libglu1-mesa-dev"
