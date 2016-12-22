@@ -1,4 +1,12 @@
 #!/usr/bin/env bash
+
+
+# Warning message for Ubuntu users
+RED='\033[0;31m'
+NC='\033[0m'
+echo -e "${RED}Warning!${NC} Ubuntu users may need to install some additional packages or do some changes, check the file fix_ubuntu.txt if you get an error"
+
+
 # Dependencies
 # Check compiler
 #if [ -z ${CXX+x} ];
