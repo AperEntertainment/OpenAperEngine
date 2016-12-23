@@ -3,6 +3,7 @@ Here you will find some fixes to your errors that often occurs on ubuntu
 
 Issue: /bin/sh: 1: cannot create glew.pc: Permission denied
 Fix: run ```$ sudo su``` and perform actions from there
+(But before, check if you had clone the repository with sudo...)
 
 
 Issue: The RandR library and headers were not found
