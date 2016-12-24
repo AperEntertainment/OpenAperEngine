@@ -38,7 +38,7 @@ make
 
 With Git, it's very simple:
 ```bash
-git submodule add AperEntertainment/OpenAperRender.git dependencies/openaperrender
+git submodule add https://github.com/AperEntertainment/OpenAperRender.git dependencies/openaperrender
 ```
 
 #### Setting up CMake
