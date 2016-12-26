@@ -162,6 +162,48 @@ namespace oar
         endDraw();
     }
 
+    void OpenGraphics::drawRect(float x, float y, float x2, float y2)
+    {
+        // Calculate the real X, the real Y, the real second X and the real second Y.
+        x += _complementX;
+        y += _complementY;
+        x2 += _complementX;
+        y2 += _complementY;
+
+        // Start to draw the rectangle.
+        beginDraw(DRAW_TYPE_QUADS);
+        // Defines vertex
+        vertex2f(x, y);
+        vertex2f(x2, y);
+        vertex2f(x2, y2);
+        vertex2f(x, y2);
+        // Finish to draw the rectangle.
+        endDraw();
+    }
+
+    void OpenGraphics::drawQuad(float x, float y, float x2, float y2, float x3, float y3, float x4, float y4)
+    {
+        // Calculate the real X, the real Y, the real second X and the real second Y and the other ones.
+        x += _complementX;
+        y += _complementY;
+        x2 += _complementX;
+        y2 += _complementY;
+        x3 += _complementX;
+        y3 += _complementY;
+        x4 += _complementX;
+        y4 += _complementY;
+
+        // Start to draw the thingy.
+        beginDraw(DRAW_TYPE_QUADS);
+        // Defines vertex
+        vertex2f(x, y);
+        vertex2f(x2, y2);
+        vertex2f(x3, y3);
+        vertex2f(x4, y4);
+        // Finish to draw the thingy.
+        endDraw();
+    }
+
     void OpenGraphics::drawImage(OpenTexture *texture, float x, float y, float width, float height)
     {
         drawImage(texture, x, y, width, height, OpenTextureRegion::BASE);
