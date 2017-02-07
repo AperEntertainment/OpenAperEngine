@@ -1,31 +1,30 @@
 /*
  * Copyright © 2016 Clément "w67clement" Wagner
  *
- * This file is part of OpenAperRender.
+ * This file is part of OpenAperEngine.
  *
- * OpenAperRender is free software: you can redistribute it and/or modify
+ * OpenAperEngine is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * OpenAperRender is distributed in the hope that it will be useful,
+ * OpenAperEngine is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public License
- * along with OpenAperRender.  If not, see <http://www.gnu.org/licenses/>.
+ * along with OpenAperEngine.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef OPENWAPERENDER_OPENGRAPHICS_H
-#define OPENWAPERENDER_OPENGRAPHICS_H
+#ifndef OPENWAPERENGINE_OPENGRAPHICS_H
+#define OPENWAPERENGINE_OPENGRAPHICS_H
 
-#include "../OpenUtils.h"
 #include "OpenTexture.h"
 #include "../window/OpenWindow.h"
 #include "Color.h"
 
-namespace oar
+namespace oae
 {
     class OpenGraphics
     {
@@ -169,4 +168,4 @@ namespace oar
     void setViewport(int x, int y, int width, int height);
 }
 
-#endif //OPENAPERRENDER_OPENGRAPHICS_H
+#endif //OPENAPERENGINE_OPENGRAPHICS_H

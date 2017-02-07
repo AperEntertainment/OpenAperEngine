@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.1)
-project(openaperrender)
+project(openaperengine)
 
 # Add local find scripts to CMAKE path.
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
@@ -28,10 +28,10 @@ set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 
-set(GRAPHICS_HEADERS include/openaperrender/graphics/Color.h include/openaperrender/graphics/OpenGraphics.h include/openaperrender/graphics/OpenTexture.h)
-set(INPUT_HEADERS include/openaperrender/input/Controller.h include/openaperrender/input/ControllerManager.h)
-set(WINDOW_HEADERS include/openaperrender/window/OpenCursor.h include/openaperrender/window/OpenMonitor.h include/openaperrender/window/OpenWindow.h)
-set(BASE_HEADERS include/openaperrender/OpenUtils.h include/openaperrender/OpenContext.h)
+set(GRAPHICS_HEADERS include/openaperengine/graphics/Color.h include/openaperengine/graphics/OpenGraphics.h include/openaperengine/graphics/OpenTexture.h)
+set(INPUT_HEADERS include/openaperengine/input/Controller.h include/openaperengine/input/ControllerManager.h)
+set(WINDOW_HEADERS include/openaperengine/window/OpenCursor.h include/openaperengine/window/OpenMonitor.h include/openaperengine/window/OpenWindow.h)
+set(BASE_HEADERS include/openaperengine/OpenUtils.h include/openaperengine/OpenContext.h)
 
 set(HEADERS ${GRAPHICS_HEADERS} ${INPUT_HEADERS} ${WINDOW_HEADERS} ${BASE_HEADERS})
 
@@ -42,9 +42,9 @@ set(BASE_SOURCES src/OpenContext.cpp)
 
 set(SOURCES ${GRAPHICS_SOURCES} ${INPUT_SOURCES} ${WINDOW_SOURCES} ${BASE_SOURCES})
 
-add_library(openaperrender ${HEADERS} ${SOURCES})
+add_library(openaperengine ${HEADERS} ${SOURCES})
 
-set_property(TARGET openaperrender PROPERTY CXX_STANDARD_REQUIRED ON)
-set_property(TARGET openaperrender PROPERTY CXX_STANDARD 11)
+set_property(TARGET openaperengine PROPERTY CXX_STANDARD_REQUIRED ON)
+set_property(TARGET openaperengine PROPERTY CXX_STANDARD 11)
 
-target_link_libraries(openaperrender glbinding glfw soil ${GLEW_LIBRARY} ${GLFW_LIBRARIES})
+target_link_libraries(openaperengine glbinding glfw soil ${GLEW_LIBRARY} ${GLFW_LIBRARIES})
