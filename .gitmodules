@@ -13,3 +13,6 @@
 [submodule "dependencies/soil"]
 	path = dependencies/soil
 	url = https://github.com/paralin/soil.git
+[submodule "dependencies/aperutils"]
+	path = dependencies/aperutils
+	url = https://github.com/AperEntertainment/AperUtils.git

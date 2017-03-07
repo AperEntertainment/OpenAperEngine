@@ -31,10 +31,10 @@ namespace oae
         return monitor;
     }
 
-    inline const char *OpenMonitor::getName()
+    std::string OpenMonitor::getName()
     {
         // Call GLFW API.
-        return glfwGetMonitorName(monitor);
+        return std::string(glfwGetMonitorName(monitor));
     }
 
     OpenVideoMode OpenMonitor::getVideoMode()

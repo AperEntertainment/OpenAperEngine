@@ -37,9 +37,9 @@ namespace oae
     void OpenWindow::init()
     {
         if (_fullscreen)
-            window = glfwCreateWindow(_width, _height, title, _monitor.getMonitorPointer(), nullptr);
+            window = glfwCreateWindow(_width, _height, title.c_str(), _monitor.getMonitorPointer(), nullptr);
         else
-            window = glfwCreateWindow(_width, _height, title, nullptr, nullptr);
+            window = glfwCreateWindow(_width, _height, title.c_str(), nullptr, nullptr);
     }
 
     void OpenWindow::destroy()

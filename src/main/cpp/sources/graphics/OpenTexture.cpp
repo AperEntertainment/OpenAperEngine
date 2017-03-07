@@ -105,7 +105,7 @@ OpenTexture createTexture(unsigned char *image, unsigned int width, unsigned int
     texture.channels = channels;
     texture.id = SOIL_create_OGL_texture(image, width, height, channels, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
     if (!texture.id)
-        throw (string("Failed to load texture").append(LINE_SEPARATOR).append(SOIL_last_result()));
+        throw (string("Failed to load texture").append(std::to_string(LINE_SEPARATOR)).append(SOIL_last_result()));
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrapMode);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wrapMode);
@@ -130,7 +130,7 @@ OpenTexture loadTexture(string path, TextureWrapMode wrapMode, TextureFilterMode
     glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &width);
     glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &height);
     if (!texture.id)
-        throw (string("Failed to load texture").append(LINE_SEPARATOR).append(SOIL_last_result()));
+        throw (string("Failed to load texture").append(std::to_string(LINE_SEPARATOR)).append(SOIL_last_result()));
 
     texture.width = width;
     texture.height = height;

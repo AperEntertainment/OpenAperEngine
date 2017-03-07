@@ -22,6 +22,7 @@
 
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
+#include <string>
 
 namespace oae
 {
@@ -47,7 +48,7 @@ namespace oae
          *
          * @return Controller's name.
          */
-        const char *getName();
+        std::string getName();
 
         /*! @brief Checks whether the controller is connected or not.
          *

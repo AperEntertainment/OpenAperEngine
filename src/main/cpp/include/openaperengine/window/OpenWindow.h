@@ -28,7 +28,7 @@ namespace oae
     {
     protected:
         GLFWwindow *window;
-        const char *title;
+        std::string title;
         unsigned int _width;
         unsigned int _height;
         OpenMonitor _monitor;
@@ -67,7 +67,7 @@ namespace oae
          *
          * @return Window's title.
          */
-        inline const char *getTitle();
+        std::string getTitle();
 
         /*! @brief Sets the title of the window.
          *
@@ -149,7 +149,7 @@ namespace oae
         OpenWindow(void *pVoid);
     };
 
-    inline const char *OpenWindow::getTitle()
+    std::string OpenWindow::getTitle()
     {
         return title;
     }

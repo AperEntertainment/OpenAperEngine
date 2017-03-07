@@ -96,7 +96,7 @@ namespace oae
          *
          * @return Monitor's name.
          */
-        inline const char *getName();
+        std::string getName();
 
         /*! @brief Represents the primary monitor.
          *

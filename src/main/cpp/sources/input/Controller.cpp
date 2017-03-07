@@ -17,37 +17,29 @@
  * along with OpenAperEngine.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef OPENAPERENGINE_OPENUTILS_H
-#define OPENAPERENGINE_OPENUTILS_H
+#include "../../include/openaperengine/input/Controller.h"
 
-#include <stdint.h>
-#include <glbinding/gl/gl.h>
+namespace oae
+{
+    Controller::Controller(int id) : joystick(id)
+    {
+    }
 
-#ifdef __cplusplus
-extern "C" {
-#endif // For C++
+    int Controller::getId() const
+    {
+        return joystick;
+    }
 
-#define DRAW_TYPE_QUADS GL_QUADS
-#define DRAW_TYPE_LINES GL_LINES
+    std::string Controller::getName()
+    {
+        const char *name = glfwGetJoystickName(joystick);
+        if (name == NULL)
+            return "NULL";
+        return std::string(name);
+    }
 
-#define GL_CLAMP_TO_EDGE 0x812F
-
-#ifdef _WIN32
-#define LINE_SEPARATOR "\r\n"
-#define PATH_SEPARATOR "\\"
-#elif __APPLE__
-#define LINE_SEPARATOR "\r"
-#define PATH_SEPARATOR "/"
-#elif __linux__
-#define LINE_SEPARATOR "\n"
-#define PATH_SEPARATOR "/"
-#else
-#error "Your platform does not seem to be supported."
-#endif
-
-#ifdef __cplusplus
+    bool Controller::isConnected()
+    {
+        return glfwJoystickPresent(joystick) == 1;
+    }
 }
-#endif // For C++
-
-
-#endif //OPENAPERENGINE_OPENUTILS_H

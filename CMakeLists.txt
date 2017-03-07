@@ -12,6 +12,9 @@ elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -march=native -mtune=native -ffast-math")
 endif()
 
+add_subdirectory(dependencies/aperutils)
+include_directories(dependencies/aperutils/include)
+
 find_package(GLEW REQUIRED)
 
 add_subdirectory(${GLFW_DIR})
@@ -28,17 +31,17 @@ set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 
-set(GRAPHICS_HEADERS include/openaperengine/graphics/Color.h include/openaperengine/graphics/OpenGraphics.h include/openaperengine/graphics/OpenTexture.h)
-set(INPUT_HEADERS include/openaperengine/input/Controller.h include/openaperengine/input/ControllerManager.h)
-set(WINDOW_HEADERS include/openaperengine/window/OpenCursor.h include/openaperengine/window/OpenMonitor.h include/openaperengine/window/OpenWindow.h)
-set(BASE_HEADERS include/openaperengine/OpenUtils.h include/openaperengine/OpenContext.h)
+set(GRAPHICS_HEADERS src/main/cpp/include/openaperengine/graphics/Color.h src/main/cpp/include/openaperengine/graphics/OpenGraphics.h src/main/cpp/include/openaperengine/graphics/OpenTexture.h)
+set(INPUT_HEADERS src/main/cpp/include/openaperengine/input/Controller.h src/main/cpp/include/openaperengine/input/ControllerManager.h)
+set(WINDOW_HEADERS src/main/cpp/include/openaperengine/window/OpenCursor.h src/main/cpp/include/openaperengine/window/OpenMonitor.h src/main/cpp/include/openaperengine/window/OpenWindow.h)
+set(BASE_HEADERS src/main/cpp/include/openaperengine/OpenUtils.h src/main/cpp/include/openaperengine/OpenContext.h)
 
 set(HEADERS ${GRAPHICS_HEADERS} ${INPUT_HEADERS} ${WINDOW_HEADERS} ${BASE_HEADERS})
 
-set(GRAPHICS_SOURCES src/graphics/Color.cpp src/graphics/OpenGraphics.cpp src/graphics/OpenTexture.cpp)
-set(INPUT_SOURCES src/input/Controller.cpp src/input/ControllerManager.cpp)
-set(WINDOW_SOURCES src/window/OpenCursor.cpp src/window/OpenMonitor.cpp src/window/OpenWindow.cpp)
-set(BASE_SOURCES src/OpenContext.cpp)
+set(GRAPHICS_SOURCES src/main/cpp/sources/graphics/Color.cpp src/main/cpp/sources/graphics/OpenGraphics.cpp src/main/cpp/sources/graphics/OpenTexture.cpp)
+set(INPUT_SOURCES src/main/cpp/sources/input/Controller.cpp src/main/cpp/sources/input/ControllerManager.cpp)
+set(WINDOW_SOURCES src/main/cpp/sources/window/OpenCursor.cpp src/main/cpp/sources/window/OpenMonitor.cpp src/main/cpp/sources/window/OpenWindow.cpp)
+set(BASE_SOURCES src/main/cpp/sources/OpenContext.cpp)
 
 set(SOURCES ${GRAPHICS_SOURCES} ${INPUT_SOURCES} ${WINDOW_SOURCES} ${BASE_SOURCES})
 

@@ -17,29 +17,25 @@
  * along with OpenAperEngine.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "../../include/openaperengine/input/Controller.h"
+#ifndef OPENAPERENGINE_OPENUTILS_H
+#define OPENAPERENGINE_OPENUTILS_H
 
-namespace oae
-{
-    Controller::Controller(int id) : joystick(id)
-    {
-    }
+#include <stdint.h>
+#include <aperutils/utils.h>
+#include <glbinding/gl/gl.h>
 
-    int Controller::getId() const
-    {
-        return joystick;
-    }
+#ifdef __cplusplus
+extern "C" {
+#endif // For C++
 
-    const char *Controller::getName()
-    {
-        const char *name = glfwGetJoystickName(joystick);
-        if (name == NULL)
-            return "NULL";
-        return name;
-    }
+#define DRAW_TYPE_QUADS GL_QUADS
+#define DRAW_TYPE_LINES GL_LINES
 
-    bool Controller::isConnected()
-    {
-        return glfwJoystickPresent(joystick) == 1;
-    }
+#define GL_CLAMP_TO_EDGE 0x812F
+
+#ifdef __cplusplus
 }
+#endif // For C++
+
+
+#endif //OPENAPERENGINE_OPENUTILS_H
